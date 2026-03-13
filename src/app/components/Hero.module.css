@@ -1,0 +1,560 @@
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2B6E6A 0%, #3D8C87 35%, #5BA4A0 65%, #7DB5A0 100%);
+    padding-top: var(--nav-h);
+}
+
+/* ── Bottom cloud video overlay ── */
+.cloudOverlay {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    user-select: none;
+    z-index: 2;
+    display: block;
+    object-fit: cover;
+    object-position: center bottom;
+}
+
+/* ── CSS atmospheric cloud blobs ── */
+.cloudBlob1,
+.cloudBlob2,
+.cloudBlob3,
+.cloudBlob4 {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    user-select: none;
+    filter: blur(60px);
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+/* Large slow blob — right side, mid-height */
+.cloudBlob1 {
+    width: 520px;
+    height: 240px;
+    top: 20%;
+    right: -60px;
+    opacity: 0.45;
+    animation: blobDrift1 22s ease-in-out infinite;
+}
+
+/* Wide blob — bottom center */
+.cloudBlob2 {
+    width: 640px;
+    height: 200px;
+    bottom: 8%;
+    left: 10%;
+    opacity: 0.35;
+    animation: blobDrift2 18s ease-in-out infinite;
+}
+
+/* Small fast blob — upper left */
+.cloudBlob3 {
+    width: 300px;
+    height: 140px;
+    top: 10%;
+    left: 5%;
+    opacity: 0.25;
+    animation: blobDrift3 14s ease-in-out infinite;
+}
+
+/* Accent blob — lower right */
+.cloudBlob4 {
+    width: 380px;
+    height: 160px;
+    bottom: 22%;
+    right: 5%;
+    opacity: 0.2;
+    animation: blobDrift4 20s ease-in-out infinite reverse;
+}
+
+@keyframes blobDrift1 {
+
+    0%,
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    33% {
+        transform: translate(-40px, 20px) scale(1.06);
+    }
+
+    66% {
+        transform: translate(20px, -15px) scale(0.96);
+    }
+}
+
+@keyframes blobDrift2 {
+
+    0%,
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    40% {
+        transform: translate(50px, -25px) scale(1.08);
+    }
+
+    70% {
+        transform: translate(-20px, 10px) scale(0.94);
+    }
+}
+
+@keyframes blobDrift3 {
+
+    0%,
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    50% {
+        transform: translate(30px, 20px) scale(1.1);
+    }
+}
+
+@keyframes blobDrift4 {
+
+    0%,
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    45% {
+        transform: translate(-30px, -18px) scale(1.05);
+    }
+
+    80% {
+        transform: translate(15px, 12px) scale(0.97);
+    }
+}
+
+
+.circle1,
+.circle2,
+.circle3 {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.circle1 {
+    width: 500px;
+    height: 500px;
+    top: -120px;
+    right: -100px;
+    background: radial-gradient(circle, rgba(164, 213, 210, 0.25) 0%, transparent 70%);
+    animation: float1 8s ease-in-out infinite;
+}
+
+.circle2 {
+    width: 350px;
+    height: 350px;
+    bottom: -60px;
+    left: -80px;
+    background: radial-gradient(circle, rgba(244, 197, 190, 0.2) 0%, transparent 70%);
+    animation: float2 10s ease-in-out infinite;
+}
+
+.circle3 {
+    width: 200px;
+    height: 200px;
+    top: 30%;
+    right: 20%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    animation: float1 6s ease-in-out infinite reverse;
+}
+
+.watermark {
+    position: absolute;
+    right: -220px;
+    top: 35%;
+    transform: translateY(-50%);
+    width: 680px;
+    height: 680px;
+    object-fit: contain;
+    opacity: 0.15;
+    pointer-events: none;
+    user-select: none;
+    z-index: 3;
+}
+
+@keyframes float1 {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.04);
+    }
+}
+
+@keyframes float2 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(3deg);
+    }
+}
+
+.inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 30;
+}
+
+.text {
+    color: white;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-pill);
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 28px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: #A8F0EB;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.3);
+    }
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    color: white;
+}
+
+.title em {
+    font-style: italic;
+    color: #A8F0EB;
+}
+
+.tagline {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+}
+
+.tagline span {
+    color: white;
+}
+
+.desc {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 460px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+}
+
+.actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 15;
+}
+
+/* ── Slice CTA button ── */
+.sliceBtn {
+    padding: 0.5em 1.4em;
+    font-size: 16px;
+    background-color: transparent;
+    border: 2.5px solid #FEFFD3;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: 300ms cubic-bezier(0.83, 0, 0.17, 1);
+    display: inline-block;
+    text-decoration: none;
+}
+
+.sliceBtn::after {
+    content: "";
+    width: 0;
+    height: calc(300% + 1em);
+    position: absolute;
+    translate: -50% -50%;
+    inset: 50%;
+    rotate: 30deg;
+    background-color: #FEFFD3;
+    transition: 1000ms cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.sliceText {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #FEFFD3;
+    position: relative;
+    z-index: 1;
+    transition: color 700ms cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.sliceBtn:hover .sliceText {
+    color: #2B6E6A;
+}
+
+.sliceBtn:hover::after {
+    width: calc(120% + 1em);
+}
+
+.sliceBtn:active {
+    scale: 0.98;
+    filter: brightness(0.9);
+}
+
+
+.stats {
+    display: flex;
+    gap: 32px;
+}
+
+.statVal {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+}
+
+.statLbl {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainCard {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    width: 340px;
+    color: white;
+}
+
+.mainCard h3 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.mainCard p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 20px;
+}
+
+.emotionGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.emotion {
+    aspect-ratio: 1;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: none;
+}
+
+.emotion:hover {
+    transform: scale(1.08);
+}
+
+.emotion span:first-child {
+    font-size: 20px;
+}
+
+.emotion span {
+    color: white;
+}
+
+.eCalm {
+    background: rgba(168, 240, 235, 0.2);
+}
+
+.eHappy {
+    background: rgba(255, 220, 150, 0.2);
+}
+
+.eAnxious {
+    background: rgba(255, 180, 180, 0.2);
+}
+
+.eSad {
+    background: rgba(180, 200, 255, 0.2);
+}
+
+.eAngry {
+    background: rgba(255, 160, 120, 0.2);
+}
+
+.eTired {
+    background: rgba(200, 180, 240, 0.2);
+}
+
+.eOkay {
+    background: rgba(180, 230, 180, 0.2);
+}
+
+.eNumb {
+    background: rgba(200, 200, 200, 0.2);
+}
+
+.bittuCard {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    box-shadow: var(--shadow-lg);
+    min-width: 180px;
+}
+
+.bittuLine {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bittuAvatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--sage));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.bittuName {
+    font-weight: 600;
+    color: var(--teal-dark);
+    font-size: 13px;
+}
+
+.bittuText {
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.4;
+}
+
+.streakCard {
+    position: absolute;
+    top: -16px;
+    left: -16px;
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 160px;
+}
+
+.streakNum {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal-dark);
+}
+
+.streakTxt {
+    font-size: 11px;
+    color: var(--ink-muted);
+    line-height: 1.3;
+}
+
+@media (max-width: 900px) {
+    .inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+    }
+
+    .actions {
+        justify-content: center;
+    }
+
+    .stats {
+        justify-content: center;
+    }
+
+    .visual {
+        display: none;
+    }
+
+    .desc {
+        margin: 0 auto 36px;
+    }
+}

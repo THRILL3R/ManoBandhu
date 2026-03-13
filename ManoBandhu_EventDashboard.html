@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ManoBandhu — Event Organiser Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal:       #1A7A6E;
+    --teal-mid:   #22967F;
+    --teal-light: #E8F5F3;
+    --teal-pale:  #F0FAF8;
+    --navy:       #1A2B3C;
+    --grey:       #6B7280;
+    --grey-light: #F3F4F6;
+    --border:     #E5E7EB;
+    --white:      #FFFFFF;
+    --warn:       #FEF3C7;
+    --warn-text:  #92400E;
+    --success:    #D1FAE5;
+    --success-t:  #065F46;
+    --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md:  0 4px 16px rgba(0,0,0,0.08);
+    --shadow-lg:  0 8px 32px rgba(0,0,0,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F7FAFA;
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  /* ── TOP NAV ── */
+  .topnav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+  }
+  .topnav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topnav-brand .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--teal);
+    letter-spacing: -0.3px;
+  }
+  .topnav-brand .divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border);
+  }
+  .topnav-brand .section-label {
+    font-size: 13px;
+    color: var(--grey);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .topnav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .org-badge {
+    background: var(--teal-light);
+    color: var(--teal);
+    border: 1px solid rgba(26,122,110,0.2);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-logout {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: var(--grey);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+  }
+  .btn-logout:hover { background: var(--grey-light); color: var(--navy); }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: flex;
+    min-height: calc(100vh - 64px);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: 240px;
+    background: var(--white);
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-section {
+    padding: 0 16px;
+    margin-bottom: 8px;
+  }
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--grey);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0 8px;
+    margin-bottom: 4px;
+    margin-top: 16px;
+  }
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--grey);
+    margin-bottom: 2px;
+  }
+  .sidebar-item:hover { background: var(--teal-pale); color: var(--teal); }
+  .sidebar-item.active { background: var(--teal-light); color: var(--teal); font-weight: 600; }
+  .sidebar-item .icon { width: 18px; text-align: center; font-size: 16px; }
+  .sidebar-item .badge {
+    margin-left: auto;
+    background: var(--teal);
+    color: white;
+    border-radius: 10px;
+    padding: 2px 7px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .sidebar-item .badge.soon {
+    background: var(--warn);
+    color: var(--warn-text);
+  }
+  .sidebar-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 12px 16px;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px;
+    max-width: 1100px;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    margin-bottom: 28px;
+  }
+  .page-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .page-header p {
+    font-size: 14px;
+    color: var(--grey);
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title span { font-size: 18px; }
+
+  /* ── FORM ── */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .form-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-group.full { grid-column: 1 / -1; }
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  label .req { color: var(--teal); }
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="tel"],
+  input[type="url"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--navy);
+    background: var(--white);
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(26,122,110,0.12);
+  }
+  textarea { resize: vertical; min-height: 90px; }
+  select { cursor: pointer; }
+  .helper-text {
+    font-size: 12px;
+    color: var(--grey);
+    margin-top: 2px;
+  }
+
+  /* ── TOGGLE ── */
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--grey-light);
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+  }
+  .toggle-label { font-size: 14px; font-weight: 500; color: var(--navy); }
+  .toggle-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    cursor: pointer;
+  }
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: #D1D5DB;
+    border-radius: 24px;
+    transition: 0.3s;
+  }
+  .toggle-slider:before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: white;
+    top: 3px;
+    left: 3px;
+    transition: 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  input:checked + .toggle-slider { background: var(--teal); }
+  input:checked + .toggle-slider:before { transform: translateX(20px); }
+
+  /* ── UPLOAD ── */
+  .upload-zone {
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--teal-pale);
+  }
+  .upload-zone:hover { border-color: var(--teal); background: var(--teal-light); }
+  .upload-zone .upload-icon { font-size: 32px; margin-bottom: 8px; }
+  .upload-zone .upload-text { font-size: 14px; color: var(--grey); }
+  .upload-zone .upload-text strong { color: var(--teal); }
+
+  /* ── CATEGORIES ── */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .category-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--grey);
+    transition: all 0.15s;
+    background: var(--white);
+    user-select: none;
+  }
+  .category-chip:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-pale); }
+  .category-chip.selected { border-color: var(--teal); color: var(--teal); background: var(--teal-light); font-weight: 600; }
+  .category-chip .check {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .category-chip.selected .check { background: var(--teal); border-color: var(--teal); color: white; }
+
+  /* ── SOCIAL ROW ── */
+  .social-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .social-icon {
+    width: 38px;
+    height: 38px;
+    background: var(--grey-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  /* ── BUTTONS ── */
+  .btn {
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+    box-shadow: 0 2px 8px rgba(26,122,110,0.3);
+  }
+  .btn-primary:hover { background: #15655a; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26,122,110,0.4); }
+  .btn-secondary {
+    background: var(--white);
+    color: var(--teal);
+    border: 1.5px solid var(--teal);
+  }
+  .btn-secondary:hover { background: var(--teal-light); }
+  .btn-danger {
+    background: #FEE2E2;
+    color: #DC2626;
+    border: 1.5px solid #FECACA;
+  }
+  .btn-danger:hover { background: #FECACA; }
+
+  /* ── EVENTS LIST ── */
+  .events-list { display: flex; flex-direction: column; gap: 14px; }
+  .event-card {
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--white);
+    transition: all 0.15s;
+  }
+  .event-card:hover { border-color: var(--teal); box-shadow: var(--shadow-md); }
+  .event-date-block {
+    width: 54px;
+    text-align: center;
+    background: var(--teal-light);
+    border-radius: 10px;
+    padding: 8px 4px;
+    flex-shrink: 0;
+  }
+  .event-date-block .month {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .event-date-block .day {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1;
+  }
+  .event-info { flex: 1; }
+  .event-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .event-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    color: var(--grey);
+  }
+  .event-meta span { display: flex; align-items: center; gap: 4px; }
+  .event-actions { display: flex; gap: 8px; }
+  .mode-tag {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .mode-tag.online { background: #DBEAFE; color: #1D4ED8; }
+  .mode-tag.offline { background: #F3E8FF; color: #7C3AED; }
+
+  /* ── LEADS CARD ── */
+  .leads-card {
+    background: linear-gradient(135deg, #F0FAF8 0%, #E8F5F3 100%);
+    border: 1.5px solid rgba(26,122,110,0.2);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .leads-card::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 120px;
+    height: 120px;
+    background: rgba(26,122,110,0.06);
+    border-radius: 50%;
+  }
+  .leads-coming-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--warn);
+    color: var(--warn-text);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .leads-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    color: var(--teal);
+    filter: blur(6px);
+    user-select: none;
+  }
+  .leads-label { font-size: 14px; color: var(--grey); margin-top: 4px; }
+  .leads-note { font-size: 12px; color: var(--grey); margin-top: 12px; font-style: italic; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--white);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 620px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+    transform: translateY(20px);
+    transition: transform 0.25s;
+    padding: 32px;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .modal-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--navy);
+  }
+  .modal-sub { font-size: 13px; color: var(--grey); margin-top: 2px; }
+  .modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--grey-light);
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grey);
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .modal-close:hover { background: #FEE2E2; color: #DC2626; border-color: #FECACA; }
+
+  /* ── NOTICE ── */
+  .notice {
+    display: flex;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    align-items: flex-start;
+  }
+  .notice.info { background: var(--teal-light); color: var(--teal); border: 1px solid rgba(26,122,110,0.2); }
+  .notice.warn { background: var(--warn); color: var(--warn-text); border: 1px solid #FDE68A; }
+
+  /* ── REASONS ── */
+  .reason-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .reason-num {
+    width: 28px;
+    height: 28px;
+    background: var(--teal-light);
+    color: var(--teal);
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--grey-light);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 28px;
+  }
+  .tab {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    color: var(--grey);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border: none;
+    background: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .tab.active {
+    background: var(--white);
+    color: var(--teal);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ── IMG PREVIEW ── */
+  .img-preview-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .img-thumb {
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+    background: var(--grey-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border: 1.5px dashed var(--border);
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .img-thumb:hover { border-color: var(--teal); background: var(--teal-pale); }
+  .img-thumb .remove {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    background: rgba(220,38,38,0.85);
+    color: white;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  /* ── SAVE BAR ── */
+  .save-bar {
+    position: sticky;
+    bottom: 0;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 -32px -32px;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.06);
+  }
+  .save-bar-text { font-size: 13px; color: var(--grey); }
+  .save-bar-text strong { color: var(--navy); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .form-grid, .form-grid.three { grid-template-columns: 1fr; }
+    .categories-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .card { animation: fadeIn 0.3s ease both; }
+  .card:nth-child(2) { animation-delay: 0.05s; }
+  .card:nth-child(3) { animation-delay: 0.1s; }
+  .card:nth-child(4) { animation-delay: 0.15s; }
+
+  .section-hidden { display: none; }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="topnav-brand">
+    <span class="logo">ManoBandhu</span>
+    <div class="divider"></div>
+    <span class="section-label">Event Organiser Portal</span>
+  </div>
+  <div class="topnav-right">
+    <div class="org-badge">
+      🏢 <span id="orgCodeDisplay">MB-MUM-0001</span>
+    </div>
+    <button class="btn-logout" onclick="showLogin()">← Back to Login</button>
+  </div>
+</nav>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Organiser</div>
+      <div class="sidebar-item active" onclick="switchTab('profile', this)">
+        <span class="icon">🏢</span> Organisation Profile
+      </div>
+      <div class="sidebar-item" onclick="switchTab('events', this)">
+        <span class="icon">📅</span> My Events
+        <span class="badge" id="eventCountBadge">2</span>
+      </div>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Analytics</div>
+      <div class="sidebar-item" onclick="switchTab('leads', this)">
+        <span class="icon">📊</span> Track Leads
+        <span class="badge soon">Soon</span>
+      </div>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section">
+      <div style="padding: 8px 12px;">
+        <div style="font-size: 11px; color: var(--grey); line-height: 1.5;">
+          Need help? Contact us at<br>
+          <a href="mailto:manobandhu.mindcare@gmail.com" style="color: var(--teal); text-decoration: none; font-weight: 500;">manobandhu.mindcare@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main" id="mainContent">
+
+    <!-- ══════════════════ PROFILE TAB ══════════════════ -->
+    <div id="tab-profile">
+      <div class="page-header">
+        <h1>Organisation Profile</h1>
+        <p>Keep your organisation details up to date. This information is visible to ManoBandhu users discovering your events.</p>
+      </div>
+
+      <!-- Logo -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span>🖼️</span> Organisation Logo</div>
+        </div>
+        <div class="upload-zone" onclick="alert('File upload — connect to storage in production')">
+          <div class="upload-icon">📷</div>
+          <div class="upload-text"><strong>Click to upload logo</strong> or drag and drop<br>PNG, JPG up to 5MB. Recommended: 400×400px</div>
+        </div>
+      </div>
+
+      <!-- Basic Info -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span>📋</span> Basic Information</div>
+          <span style="font-size: 12px; color: var(--grey);">* Required fields</span>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Organisation Name <span class="req">*</span></label>
+            <input type="text" value="Mindful Nagpur Foundation" placeholder="Your organisation name">
+          </div>
+          <div class="form-group">
+            <label>Registered Number</label>
+            <input type="text" placeholder="Official registration number" value="MH-2024-00142">
+          </div>
+          <div class="form-group">
+            <label>Incorporation Date</label>
+            <input type="date" value="2022-04-15">
+          </div>
+          <div class="form-group">
+            <label>GST Details</label>
+            <input type="text" placeholder="GST number (if applicable)" value="27AABCM1234A1Z5">
+          </div>
+          <div class="form-group">
+            <label>Contact Email <span class="req">*</span></label>
+            <input type="email" value="hello@mindfulnagpur.org" placeholder="contact@organisation.com">
+            <span class="helper-text">This email is linked to your organisation code MB-MUM-0001</span>
+          </div>
+          <div class="form-group">
+            <label>Contact Phone</label>
+            <input type="tel" value="+91 9876543210" placeholder="+91 XXXXX XXXXX">
+          </div>
+          <div class="form-group full">
+            <label>Description <span class="req">*</span></label>
+            <textarea placeholder="Tell people about your organisation...">We are a Nagpur-based wellness collective offering mindfulness workshops, listening circles, and community healing events. Our mission is to make emotional wellbeing accessible to all.</textarea>
+          </div>
+        </div>
+
+        <!-- Toggles -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px;">
+          <div class="toggle-row">
+            <span class="toggle-label">Registered Organisation</span>
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-label">NGO / Non-Profit</span>
+            <label class="toggle-switch">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event Categories -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span>🏷️</span> Event Categories</div>
+          <span style="font-size: 13px; color: var(--grey);" id="catCount">2 selected</span>
+        </div>
+        <p style="font-size: 13px; color: var(--grey); margin-bottom: 16px;">Select all categories that apply to your organisation's events.</p>
+        <div class="categories-grid" id="catGrid">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- Images -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span>🖼️</span> Organisation Images</div>
+          <button class="btn btn-secondary" style="font-size: 13px; padding: 7px 14px;" onclick="alert('Upload — connect to storage in production')">+ Add Image</button>
+        </div>
+        <p style="font-size: 13px; color: var(--grey); margin-bottom: 16px;">Event photos, venue images, past workshops. Help people feel what your events are like.</p>
+        <div class="img-preview-row">
+          <div class="img-thumb">🌿<div class="remove" onclick="this.parentElement.remove()">×</div></div>
+          <div class="img-thumb">🏡<div class="remove" onclick="this.parentElement.remove()">×</div></div>
+          <div class="img-thumb">👥<div class="remove" onclick="this.parentElement.remove()">×</div></div>
+          <div class="img-thumb" style="font-size: 20px; color: var(--grey);" onclick="alert('Upload')">+</div>
+        </div>
+      </div>
+
+      <!-- Social Media -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span>🔗</span> Social Media Links</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="social-row">
+            <div class="social-icon">📸</div>
+            <div class="form-group" style="flex: 1;">
+              <label>Instagram</label>
+              <input type="url" placeholder="https://instagram.com/yourhandle" value="https://instagram.com/mindfulnagpur">
+            </div>
+          </div>
+          <div class="social-row">
+            <div class="social-icon">💼</div>
+            <div class="form-group" style="flex: 1;">
+              <label>LinkedIn</label>
+              <input type="url" placeholder="https://linkedin.com/company/yourorg">
+            </div>
+          </div>
+          <div class="social-row">
+            <div class="social-icon">🌐</div>
+            <div class="form-group" style="flex: 1;">
+              <label>Website</label>
+              <input type="url" placeholder="https://yourwebsite.com" value="https://mindfulnagpur.org">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Save Bar -->
+      <div class="save-bar">
+        <span class="save-bar-text">Last saved: <strong>Today at 11:42 AM</strong></span>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-secondary">Discard Changes</button>
+          <button class="btn btn-primary" onclick="showSaved()">💾 Save Profile</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════ EVENTS TAB ══════════════════ -->
+    <div id="tab-events" class="section-hidden">
+      <div class="page-header">
+        <h1>My Events</h1>
+        <p>Manage your listed events. Events you add here appear in the ManoBandhu platform under The Fair.</p>
+      </div>
+
+      <div class="notice info" style="margin-bottom: 24px;">
+        ℹ️ Events you list here are visible to ManoBandhu users exploring The Fair destination on the platform.
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+        <button class="btn btn-primary" onclick="openAddEvent()">+ Add New Event</button>
+      </div>
+
+      <div class="events-list">
+        <!-- Event 1 -->
+        <div class="event-card">
+          <div class="event-date-block">
+            <div class="month">APR</div>
+            <div class="day">12</div>
+          </div>
+          <div class="event-info">
+            <div class="event-name">Mindfulness & Breathwork — Spring Session</div>
+            <div class="event-meta">
+              <span>🕙 10:00 AM</span>
+              <span>📞 +91 9876543210</span>
+              <span class="mode-tag online">🌐 Online</span>
+              <span style="background: var(--teal-light); color: var(--teal); padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Mindfulness Sessions</span>
+            </div>
+          </div>
+          <div class="event-actions">
+            <button class="btn btn-secondary" style="font-size: 13px; padding: 7px 14px;">✏️ Edit</button>
+            <button class="btn btn-danger" style="font-size: 13px; padding: 7px 14px;">🗑️</button>
+          </div>
+        </div>
+        <!-- Event 2 -->
+        <div class="event-card">
+          <div class="event-date-block">
+            <div class="month">APR</div>
+            <div class="day">28</div>
+          </div>
+          <div class="event-info">
+            <div class="event-name">Community Listening Circle — Monthly</div>
+            <div class="event-meta">
+              <span>📍 Nagpur</span>
+              <span>📞 +91 9876543210</span>
+              <span class="mode-tag offline">📍 Offline</span>
+              <span style="background: var(--teal-light); color: var(--teal); padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Support Groups</span>
+            </div>
+          </div>
+          <div class="event-actions">
+            <button class="btn btn-secondary" style="font-size: 13px; padding: 7px 14px;">✏️ Edit</button>
+            <button class="btn btn-danger" style="font-size: 13px; padding: 7px 14px;">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════ LEADS TAB ══════════════════ -->
+    <div id="tab-leads" class="section-hidden">
+      <div class="page-header">
+        <h1>Track Leads</h1>
+        <p>See how many people are discovering your events through ManoBandhu.</p>
+      </div>
+
+      <div class="notice warn" style="margin-bottom: 24px;">
+        ⏳ Lead tracking will be active after the ManoBandhu pilot study launches. Check back in June 2026.
+      </div>
+
+      <div class="card">
+        <div class="leads-card">
+          <div class="leads-coming-soon">⏳ Coming Soon — Active after pilot study launch</div>
+          <div class="leads-number">247</div>
+          <div class="leads-label">People who discovered your events through ManoBandhu</div>
+          <div class="leads-note">This number will be live once the pilot study begins in June 2026.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ══════════════════ ADD EVENT MODAL ══════════════════ -->
+<div class="modal-overlay" id="addEventModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Add New Event</div>
+        <div class="modal-sub">Your event will appear in The Fair on the ManoBandhu platform.</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>Event Name <span class="req">*</span></label>
+        <input type="text" placeholder="e.g. Monthly Listening Circle — April 2026">
+      </div>
+      <div class="form-group">
+        <label>Date <span class="req">*</span></label>
+        <input type="date">
+      </div>
+      <div class="form-group">
+        <label>Contact Number <span class="req">*</span></label>
+        <input type="tel" placeholder="+91 XXXXX XXXXX">
+      </div>
+      <div class="form-group">
+        <label>Mode <span class="req">*</span></label>
+        <select id="modeSelect" onchange="toggleCity()">
+          <option value="">Select mode</option>
+          <option value="online">🌐 Online</option>
+          <option value="offline">📍 Offline</option>
+        </select>
+      </div>
+      <div class="form-group" id="cityField" style="display: none;">
+        <label>City <span class="req">*</span></label>
+        <input type="text" placeholder="e.g. Nagpur, Pune, Mumbai">
+      </div>
+      <div class="form-group full">
+        <label>Event Category <span class="req">*</span></label>
+        <select>
+          <option value="">Select category</option>
+          <option>Yoga & Meditation</option>
+          <option>Trekking & Nature Walks</option>
+          <option>Support Groups</option>
+          <option>Workshops</option>
+          <option>Volunteering</option>
+          <option>Fitness & Marathons</option>
+          <option>Art & Creative Therapy</option>
+          <option>Mindfulness Sessions</option>
+          <option>Community Gatherings</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <label style="margin-bottom: 10px; display: block;">Why Should Someone Join? <span class="req">*</span></label>
+      <span class="helper-text" style="display: block; margin-bottom: 12px;">Give 3 compelling reasons that will appear on your event listing.</span>
+      <div class="reason-input">
+        <div class="reason-num">1</div>
+        <input type="text" placeholder="e.g. Learn practical tools to manage daily stress">
+      </div>
+      <div class="reason-input">
+        <div class="reason-num">2</div>
+        <input type="text" placeholder="e.g. Connect with a warm, non-judgmental community">
+      </div>
+      <div class="reason-input">
+        <div class="reason-num">3</div>
+        <input type="text" placeholder="e.g. Walk away with clarity and a sense of calm">
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border);">
+      <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="addEventDemo()">🎉 List This Event</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ TOAST ══════════════════ -->
+<div id="toast" style="
+  position: fixed; bottom: 32px; right: 32px;
+  background: var(--teal); color: white;
+  padding: 14px 20px; border-radius: 12px;
+  font-size: 14px; font-weight: 600;
+  box-shadow: 0 8px 24px rgba(26,122,110,0.35);
+  transform: translateY(80px); opacity: 0;
+  transition: all 0.3s; z-index: 300;
+  display: flex; align-items: center; gap: 8px;
+">✅ <span id="toastMsg">Saved!</span></div>
+
+<script>
+  // ── Categories ──
+  const CATS = [
+    "🧘 Yoga & Meditation",
+    "🥾 Trekking & Nature Walks",
+    "💬 Support Groups",
+    "🎓 Workshops",
+    "🤝 Volunteering",
+    "🏃 Fitness & Marathons",
+    "🎨 Art & Creative Therapy",
+    "🌿 Mindfulness Sessions",
+    "👥 Community Gatherings"
+  ];
+  let selectedCats = new Set([0, 7]); // pre-selected
+
+  function renderCats() {
+    const grid = document.getElementById('catGrid');
+    grid.innerHTML = '';
+    CATS.forEach((cat, i) => {
+      const chip = document.createElement('div');
+      chip.className = 'category-chip' + (selectedCats.has(i) ? ' selected' : '');
+      chip.innerHTML = `<div class="check">${selectedCats.has(i) ? '✓' : ''}</div>${cat}`;
+      chip.onclick = () => {
+        if (selectedCats.has(i)) selectedCats.delete(i);
+        else selectedCats.add(i);
+        renderCats();
+        document.getElementById('catCount').textContent = selectedCats.size + ' selected';
+      };
+      grid.appendChild(chip);
+    });
+  }
+  renderCats();
+
+  // ── Tab switching ──
+  function switchTab(name, el) {
+    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    ['profile','events','leads'].forEach(t => {
+      document.getElementById('tab-' + t).classList.toggle('section-hidden', t !== name);
+    });
+  }
+
+  // ── Modal ──
+  function openAddEvent() {
+    document.getElementById('addEventModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('addEventModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('addEventModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // ── City toggle ──
+  function toggleCity() {
+    const val = document.getElementById('modeSelect').value;
+    document.getElementById('cityField').style.display = val === 'offline' ? 'flex' : 'none';
+  }
+
+  // ── Add event demo ──
+  function addEventDemo() {
+    closeModal();
+    const list = document.querySelector('.events-list');
+    const card = document.createElement('div');
+    card.className = 'event-card';
+    card.style.animation = 'fadeIn 0.3s ease';
+    card.innerHTML = `
+      <div class="event-date-block">
+        <div class="month">NEW</div>
+        <div class="day">—</div>
+      </div>
+      <div class="event-info">
+        <div class="event-name">New Event Added</div>
+        <div class="event-meta">
+          <span class="mode-tag online">🌐 Online</span>
+        </div>
+      </div>
+      <div class="event-actions">
+        <button class="btn btn-secondary" style="font-size:13px;padding:7px 14px;">✏️ Edit</button>
+        <button class="btn btn-danger" style="font-size:13px;padding:7px 14px;" onclick="this.closest('.event-card').remove(); updateCount()">🗑️</button>
+      </div>`;
+    list.appendChild(card);
+    updateCount();
+    showToast('🎉 Event listed successfully!');
+  }
+
+  function updateCount() {
+    const count = document.querySelectorAll('.event-card').length;
+    document.getElementById('eventCountBadge').textContent = count;
+  }
+
+  // ── Toast ──
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg || 'Saved!';
+    t.style.transform = 'translateY(0)';
+    t.style.opacity = '1';
+    setTimeout(() => { t.style.transform = 'translateY(80px)'; t.style.opacity = '0'; }, 2500);
+  }
+
+  function showSaved() { showToast('✅ Profile saved successfully!'); }
+  function showLogin() { showToast('↩ Redirecting to login...'); }
+</script>
+</body>
+</html>
