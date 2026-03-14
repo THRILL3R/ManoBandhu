@@ -20,11 +20,11 @@ const audiences = [
         textColor: "#164e63",
     },
     {
-        emoji: "🏪",
-        title: "Small Business Owners",
+        emoji: "🏡",
+        title: "Homemakers & Caregivers",
         description:
             "When you carry so much for others, ManoBandhu is the space that holds you. Explore your inner world, express what you rarely share, and learn to be as gentle with yourself as you are with your work.",
-        tags: ["Self-compassion", "Expression", "Reflection", "Inner clarity"],
+        tags: ["Self-care", "Reflection", "Inner space", "Emotional rest"],
         color: "#d97706",
         bg: "#fffbeb",
         textColor: "#78350f",
@@ -33,11 +33,11 @@ const audiences = [
 
 export function AudienceSection() {
     return (
-        <section
-            id="who-its-for"
-            className="relative py-24 px-6 overflow-hidden"
-            style={{ background: "linear-gradient(180deg, #fff9f0 0%, #f0faf7 100%)" }}
-        >
+        <div id="who-its-for" className="flex flex-col">
+            <section
+                className="relative pt-24 pb-16 px-6 overflow-hidden"
+                style={{ background: "linear-gradient(180deg, #fff9f0 0%, #f0faf7 100%)" }}
+            >
 
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Header */}
@@ -104,9 +104,8 @@ export function AudienceSection() {
                                 className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 relative"
                                 style={{ background: `${aud.color}18`, fontSize: "2rem" }}
                             >
-                                {/* Fallback pattern to show 3D icon img if exists, else emoji */}
                                 <img
-                                    src={aud.emoji === "🎓" ? "/student.png" : aud.emoji === "💼" ? "/briefcase.png" : "/store.png"}
+                                    src={aud.emoji === "🎓" ? "/student.png" : aud.emoji === "💼" ? "/briefcase.png" : "/house.png"}
                                     alt={aud.title}
                                     className="w-10 h-10 absolute inset-0 m-auto"
                                     onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden') }}
@@ -156,9 +155,39 @@ export function AudienceSection() {
                     ))}
                 </div>
 
-                {/* Ethos banner */}
-                <div
-                    className="mt-14 rounded-3xl p-8 flex flex-col md:flex-row items-center gap-6 text-center md:text-left"
+                {/* Anyone Finding Their Way */}
+                <div className="mt-16 text-center max-w-3xl mx-auto">
+                    <h3
+                        style={{
+                            fontFamily: "'Playfair Display', serif",
+                            color: "#0d3d2e",
+                            fontSize: "1.8rem",
+                            fontWeight: 700,
+                            marginBottom: "1rem",
+                        }}
+                    >
+                        Anyone Finding Their Way
+                    </h3>
+                    <p
+                        style={{
+                            fontFamily: "'Nunito', sans-serif",
+                            color: "#4a7c6b",
+                            fontSize: "1.05rem",
+                            lineHeight: 1.8,
+                        }}
+                    >
+                        Between jobs, between phases, figuring things out. ManoBandhu meets you exactly where you are — no labels, no pressure, just a quiet space to understand yourself better every day.
+                    </p>
+                </div>
+                </div>
+            </section>
+
+            {/* Ethos banners wrapper on white background */}
+            <section className="relative px-6 pt-12 pb-24 bg-white z-10">
+                <div className="max-w-4xl mx-auto">
+                    {/* Ethos banner */}
+                    <div
+                        className="rounded-3xl p-8 flex flex-col md:flex-row items-center gap-6 text-center md:text-left"
                     style={{
                         background: "linear-gradient(135deg, #e8f7f2, #d5f5e3)",
                         border: "1px solid rgba(46,204,113,0.2)",
@@ -209,7 +238,7 @@ export function AudienceSection() {
                                 marginBottom: "0.5rem",
                             }}
                         >
-                            Not just an app — a living, breathing community
+                            Not just a platform — a living, breathing community
                         </h3>
                         <p
                             style={{
@@ -222,8 +251,9 @@ export function AudienceSection() {
                             ManoBandhu exists online <em>and</em> offline. We actively encourage you to show up in the real world too — through wellness events, monthly community meetups, and group sessions. Because connection and presence are part of the practice.
                         </p>
                     </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     );
 }

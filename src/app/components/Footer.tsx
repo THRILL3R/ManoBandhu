@@ -37,11 +37,12 @@ export function Footer() {
           <div>
             <h4 className="font-bold text-base mb-5 tracking-wide text-white">Pages</h4>
             <ul className="space-y-4 text-[15px] font-medium text-[#c4d6cf]">
-              <li><Link to="/products" className="hover:text-white transition-colors">All Products</Link></li>
-              <li><Link to="/studio" className="hover:text-white transition-colors">Studio</Link></li>
-              <li><Link to="/clients" className="hover:text-white transition-colors">Clients</Link></li>
-              <li><Link to="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
-              <li><Link to="/blogs" className="hover:text-white transition-colors">Blog</Link></li>
+              <li><Link to="/"        className="hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/about"   className="hover:text-white transition-colors">About</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
+              <li><Link to="/blogs"   className="hover:text-white transition-colors">Explore the Blog</Link></li>
+              <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link to="/events"  className="hover:text-white transition-colors">Events</Link></li>
             </ul>
           </div>
 
@@ -49,10 +50,12 @@ export function Footer() {
           <div>
             <h4 className="font-bold text-base mb-5 tracking-wide text-white">Socials</h4>
             <ul className="space-y-4 text-[15px] font-medium text-[#c4d6cf]">
-              <li><a href="#" className="hover:text-white transition-colors">Facebook</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Twitter</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">LinkedIn</a></li>
+              <li>
+                <a href="https://www.instagram.com/mano.bandhu?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/company/manobandhu-mindcare-services/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+              </li>
             </ul>
           </div>
 

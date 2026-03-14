@@ -7,6 +7,7 @@ import { BlogsPage } from "./pages/BlogsPage";
 import { EventsPage } from "./pages/EventsPage";
 import { ContactPage } from "./pages/ContactPage";
 import { OrganizerDashboard } from "./pages/OrganizerDashboard";
+import { PilotStudyPage } from "./pages/PilotStudyPage";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
       { path: "events", Component: EventsPage },
       { path: "events/dashboard", Component: OrganizerDashboard },
       { path: "contact", Component: ContactPage },
+      { path: "pilot-study", Component: PilotStudyPage },
     ],
   },
 ]);

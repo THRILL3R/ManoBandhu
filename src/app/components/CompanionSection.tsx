@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 const dogNames = [
-    "Mochi", "Diya", "Arjun", "Sundari", "Biscuit",
-    "Mithu", "Chai", "Golu", "Nila", "Pebble"
+    "Max", "Bella", "Luna", "Charlie", "Cooper",
+    "Daisy", "Rocky", "Bailey", "Buddy", "Lucy"
 ];
 
 const dogTraits = [
@@ -82,29 +82,6 @@ export function CompanionSection() {
                                 </div>
                             )}
                         </div>
-
-                        {/* Traits list */}
-                        <div className="flex flex-col gap-2 w-full max-w-xs mt-4">
-                            {dogTraits.map((t) => (
-                                <div
-                                    key={t.trait}
-                                    className="flex items-center gap-3 px-4 py-2 rounded-xl"
-                                    style={{ background: "rgba(255,255,255,0.7)" }}
-                                >
-                                    <span style={{ fontSize: "1rem" }}>{t.emoji}</span>
-                                    <span
-                                        style={{
-                                            fontFamily: "'Nunito', sans-serif",
-                                            color: "#4a5568",
-                                            fontSize: "0.82rem",
-                                            lineHeight: 1.4,
-                                        }}
-                                    >
-                                        {t.trait}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
                     </div>
 
                     {/* Right: Content */}
@@ -168,106 +145,112 @@ export function CompanionSection() {
                             You get to choose your companion's name — something that feels just right. Something that, when you see it pop up on screen, makes you feel a little less alone.
                         </p>
 
-                        {/* Name chooser */}
-                        <div
-                            className="rounded-2xl p-6"
+                    </div>
+                </div>
+
+                {/* Name chooser moved below the grid */}
+                <div
+                    className="rounded-3xl p-8 mt-16 w-full max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-8"
+                    style={{
+                        background: "white",
+                        boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
+                        border: "1px solid rgba(243,156,18,0.2)",
+                    }}
+                >
+                    <div className="flex-1 w-full">
+                        <p
+                            className="mb-4 text-center md:text-left"
                             style={{
-                                background: "white",
-                                boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                                border: "1px solid rgba(243,156,18,0.2)",
+                                fontFamily: "'Playfair Display', serif",
+                                color: "#2c1810",
+                                fontSize: "1.15rem",
+                                fontWeight: 600,
                             }}
                         >
-                            <p
-                                className="mb-4"
-                                style={{
-                                    fontFamily: "'Playfair Display', serif",
-                                    color: "#2c1810",
-                                    fontSize: "1.05rem",
-                                    fontWeight: 600,
-                                }}
-                            >
-                                What would you name your companion?
-                            </p>
+                            What would you name your companion?
+                        </p>
 
-                            {/* Suggested names */}
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {dogNames.map((name) => (
-                                    <button
-                                        key={name}
-                                        onClick={() => { setChosenName(name); setCustomName(""); setRevealed(false); }}
-                                        className="px-4 py-1.5 rounded-full transition-all duration-200 hover:scale-105"
-                                        style={{
-                                            fontFamily: "'Nunito', sans-serif",
-                                            fontSize: "0.85rem",
-                                            fontWeight: 600,
-                                            background: chosenName === name && !customName ? "#2d9e7e" : "#f0faf7",
-                                            color: chosenName === name && !customName ? "white" : "#2d6a4f",
-                                            border: `1px solid ${chosenName === name && !customName ? "#2d9e7e" : "rgba(45,158,126,0.25)"}`,
-                                        }}
-                                    >
-                                        {name}
-                                    </button>
-                                ))}
-                            </div>
-
-                            <div className="flex items-center gap-2 mb-3">
-                                <div className="h-px flex-1" style={{ background: "rgba(0,0,0,0.08)" }} />
-                                <span style={{ fontFamily: "'Nunito', sans-serif", color: "#9ca3af", fontSize: "0.8rem" }}>or type your own</span>
-                                <div className="h-px flex-1" style={{ background: "rgba(0,0,0,0.08)" }} />
-                            </div>
-
-                            <div className="flex gap-3">
-                                <input
-                                    type="text"
-                                    placeholder="Enter a name..."
-                                    value={customName}
-                                    maxLength={20}
-                                    onChange={(e) => { setCustomName(e.target.value); setChosenName(""); setRevealed(false); }}
-                                    className="flex-1 px-4 py-2.5 rounded-xl outline-none"
-                                    style={{
-                                        fontFamily: "'Nunito', sans-serif",
-                                        fontSize: "0.95rem",
-                                        background: "#f9fafb",
-                                        border: "1.5px solid rgba(45,158,126,0.3)",
-                                        color: "#1a3a2a",
-                                    }}
-                                />
+                        {/* Suggested names */}
+                        <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start">
+                            {dogNames.map((name) => (
                                 <button
-                                    onClick={() => { if (finalName) setRevealed(true); }}
-                                    disabled={!finalName}
-                                    className="px-5 py-2.5 rounded-xl font-bold transition-all duration-200 hover:scale-105 disabled:opacity-40"
+                                    key={name}
+                                    onClick={() => { setChosenName(name); setCustomName(""); setRevealed(false); }}
+                                    className="px-4 py-1.5 rounded-full transition-all duration-200 hover:scale-105 inline-block"
                                     style={{
                                         fontFamily: "'Nunito', sans-serif",
                                         fontSize: "0.9rem",
-                                        background: "linear-gradient(135deg, #2d9e7e, #1a6b5a)",
-                                        color: "white",
-                                        boxShadow: finalName ? "0 4px 14px rgba(45,158,126,0.35)" : "none",
+                                        fontWeight: 600,
+                                        background: chosenName === name && !customName ? "#2d9e7e" : "#f0faf7",
+                                        color: chosenName === name && !customName ? "white" : "#2d6a4f",
+                                        border: `1px solid ${chosenName === name && !customName ? "#2d9e7e" : "rgba(45,158,126,0.25)"}`,
                                     }}
                                 >
-                                    Meet them!
+                                    {name}
                                 </button>
-                            </div>
-
-                            {revealed && finalName && (
-                                <div
-                                    className="mt-4 p-4 rounded-xl text-center"
-                                    style={{ background: "linear-gradient(135deg, #e8f7f2, #d5f5e3)" }}
-                                >
-                                    <p
-                                        style={{
-                                            fontFamily: "'Playfair Display', serif",
-                                            color: "#0d4d3a",
-                                            fontSize: "1.1rem",
-                                            fontStyle: "italic",
-                                        }}
-                                    >
-                                        🐾 Say hello to <strong>{finalName}</strong> — your companion on this island. They'll be waiting for you every single day.
-                                    </p>
-                                </div>
-                            )}
+                            ))}
                         </div>
                     </div>
+
+                    <div className="w-full md:w-80 flex-shrink-0 flex flex-col items-center md:items-stretch">
+                        <div className="flex items-center gap-2 mb-3 w-full">
+                            <div className="h-px flex-1" style={{ background: "rgba(0,0,0,0.08)" }} />
+                            <span style={{ fontFamily: "'Nunito', sans-serif", color: "#9ca3af", fontSize: "0.85rem" }}>or type your own</span>
+                            <div className="h-px flex-1" style={{ background: "rgba(0,0,0,0.08)" }} />
+                        </div>
+
+                        <div className="flex gap-3 w-full">
+                            <input
+                                type="text"
+                                placeholder="Enter a name..."
+                                value={customName}
+                                maxLength={20}
+                                onChange={(e) => { setCustomName(e.target.value); setChosenName(""); setRevealed(false); }}
+                                className="flex-1 w-full min-w-0 px-4 py-2.5 rounded-xl outline-none"
+                                style={{
+                                    fontFamily: "'Nunito', sans-serif",
+                                    fontSize: "0.95rem",
+                                    background: "#f9fafb",
+                                    border: "1.5px solid rgba(45,158,126,0.3)",
+                                    color: "#1a3a2a",
+                                }}
+                            />
+                            <button
+                                onClick={() => { if (finalName) setRevealed(true); }}
+                                disabled={!finalName}
+                                className="px-6 py-2.5 rounded-xl font-bold transition-all duration-200 hover:scale-105 disabled:opacity-40 whitespace-nowrap"
+                                style={{
+                                    fontFamily: "'Nunito', sans-serif",
+                                    fontSize: "0.95rem",
+                                    background: "linear-gradient(135deg, #2d9e7e, #1a6b5a)",
+                                    color: "white",
+                                    boxShadow: finalName ? "0 4px 14px rgba(45,158,126,0.35)" : "none",
+                                }}
+                            >
+                                Meet them!
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
+                {/* Revealed state below the horizontal banner */}
+                {revealed && finalName && (
+                    <div
+                        className="mt-6 p-5 rounded-xl text-center max-w-3xl mx-auto w-full"
+                        style={{ background: "linear-gradient(135deg, #e8f7f2, #d5f5e3)" }}
+                    >
+                        <p
+                            style={{
+                                fontFamily: "'Playfair Display', serif",
+                                color: "#0d4d3a",
+                                fontSize: "1.2rem",
+                                fontStyle: "italic",
+                            }}
+                        >
+                            🐾 Say hello to <strong>{finalName}</strong> — your companion on this island. They'll be waiting for you every single day.
+                        </p>
+                    </div>
+                )}
             </div>
         </section>
     );

@@ -69,14 +69,14 @@ export function ApproachSection() {
                                     fontSize: "1rem"
                                 }}
                             >
-                                Building emotional resilience before challenges arise
+                                Building emotional resilience before challenges arise.
                             </p>
 
                             <div className="w-full space-y-4">
                                 {[
-                                    { icon: "🎮", text: "Gamified ManoBandhu App with island universe" },
-                                    { icon: "🌲", text: "Nature Expeditions for grounded healing" },
-                                    { icon: "📢", text: "Psychoeducation Campaigns for awareness" }
+                                    { icon: "🎮", text: "Gamified ManoBandhu Platform with island universe" },
+                                    { icon: "🌲", text: "Nature Expeditions — find stillness and inner wisdom in the natural world" },
+                                    { icon: "📢", text: "Psychoeducation Campaigns — free awareness initiatives for underserved communities" }
                                 ].map((item, idx) => (
                                     <div
                                         key={idx}
@@ -131,14 +131,14 @@ export function ApproachSection() {
                                     fontSize: "1rem"
                                 }}
                             >
-                                Structured support when you need it most
+                                Structured support when you need it most.
                             </p>
 
                             <div className="w-full space-y-4">
                                 {[
-                                    { icon: "🎓", text: "Specialized Workshops for skill-building" },
-                                    { icon: "💬", text: "Listening Circles for shared healing" },
-                                    { icon: "📚", text: "Learning Programs (Coming Soon)" }
+                                    { icon: "🎓", text: "Specialized Workshops — for healing, grief, and trauma recovery" },
+                                    { icon: "💬", text: "Listening Circles — you are not alone. Share, grieve, accept, and heal together" },
+                                    { icon: "📚", text: "Learning Programs (Coming Soon) — skill-building that reflects in your personality" }
                                 ].map((item, idx) => (
                                     <div
                                         key={idx}

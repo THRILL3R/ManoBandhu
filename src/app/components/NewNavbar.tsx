@@ -67,7 +67,7 @@ export function NewNavbar() {
                 whiteSpace: "nowrap",
               }}
             >
-              ManoBandhu
+              ManoBandhu MindCare Services
             </span>
           </Link>
 
@@ -122,11 +122,17 @@ export function NewNavbar() {
 
           {/* CTA — right */}
           <Link
-            to="/contact"
+            to="/pilot-study"
             className="ripple-btn"
             style={{
               background: isNavSolid ? "#3D9990" : "#2E7B74",
               transition: "background 0.3s ease",
+            }}
+            onClick={(e) => {
+              if (location.pathname === '/') {
+                e.preventDefault();
+                document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
             }}
           >
             Join The Study
@@ -205,8 +211,14 @@ export function NewNavbar() {
             </Link>
           ))}
           <Link
-            to="/contact"
-            onClick={() => setMobileOpen(false)}
+            to="/pilot-study"
+            onClick={(e) => {
+              setMobileOpen(false);
+              if (location.pathname === '/') {
+                e.preventDefault();
+                document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
             className="ripple-btn"
             style={{ margin: "12px", justifyContent: "center" }}
           >

@@ -1,7 +1,15 @@
+import { useEffect, useRef } from 'react'
 import styles from './Hero.module.css'
 import GradualBlur from './GradualBlur'
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.7
+    }
+  }, [])
 
   return (
     <section id="home" className={styles.hero}>
@@ -16,6 +24,7 @@ export function Hero() {
       <div className={styles.cloudBlob4} />
 
       <video
+        ref={videoRef}
         src="/logo.webm"
         autoPlay
         loop
@@ -37,31 +46,23 @@ export function Hero() {
               Your <em>Mind</em> Deserves<br />Daily Care &amp; Kindness
             </h1>
             <p className={styles.tagline}>
-              <span>Reflect.</span> &nbsp;<span>Regulate.</span> &nbsp;<span>Strengthen.</span>
+              <span>Explore the World </span> &nbsp;<span>Within Your Mind</span>
             </p>
             <p className={styles.desc}>
               ManoBandhu is a structured emotional wellness platform that helps you build daily emotional habits — with guided rituals, a regulation module, and warm reflective insights delivered every week.
             </p>
             <div className={styles.actions}>
-              <a href="#waitlist" className={styles.sliceBtn}>
+              <a
+                href="#waitlist"
+                className={styles.sliceBtn}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+              >
                 <span className={styles.sliceText}>Join the Study →</span>
               </a>
-              <a
-                href="#story"
-                className="px-6 py-2.5 rounded-full font-semibold transition-all duration-300"
-                style={{
-                  fontFamily: "'Nunito', sans-serif",
-                  color: 'rgba(255,255,255,0.85)',
-                  fontSize: '0.95rem',
-                  border: '1.5px solid rgba(255,255,255,0.4)',
-                  backdropFilter: 'blur(4px)',
-                  textDecoration: 'none',
-                }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.15)')}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = 'transparent')}
-              >
-                Learn More
-              </a>
+
             </div>
           </div>
         </div>

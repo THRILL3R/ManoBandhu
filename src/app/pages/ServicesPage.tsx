@@ -148,6 +148,9 @@ export function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            <div className="w-20 h-20 bg-white/20 backdrop-blur rounded-full flex items-center justify-center mx-auto mb-6">
+              <Smartphone className="w-10 h-10 text-white" />
+            </div>
             <h1 className="mb-6">Our Services</h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
               Comprehensive mental wellbeing through prevention and care
