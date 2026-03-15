@@ -46,7 +46,7 @@ export function Footer() {
         </div>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
 
           {/* EXPLORE */}
           <div>
@@ -88,17 +88,17 @@ export function Footer() {
           <div>
             <h4 className="font-bold text-base mb-5 tracking-wide text-white uppercase">CONTACT</h4>
             <ul className="space-y-4 text-[15px] font-medium text-[#c4d6cf]">
-              <li className="flex items-start gap-3">
-                <Mail size={18} className="text-[#4ade80] mt-1 flex-shrink-0" />
-                <a href="mailto:hello@manobandhu.com" className="hover:text-white transition-colors break-all">hello@manobandhu.com</a>
+              <li className="flex items-center gap-3">
+                <Mail size={18} className="text-[#4ade80] flex-shrink-0" />
+                <a href="mailto:hello@manobandhu.com" className="hover:text-white transition-colors md:whitespace-nowrap">hello@manobandhu.com</a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-[#4ade80] flex-shrink-0" />
                 <a href="tel:+918087151656" className="hover:text-white transition-colors whitespace-nowrap">+91 80871 51656</a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin size={18} className="text-[#4ade80] mt-1 flex-shrink-0" />
-                <span className="leading-tight">Kolhapur, India</span>
+              <li className="flex items-center gap-3">
+                <MapPin size={18} className="text-[#4ade80] flex-shrink-0" />
+                <span className="md:whitespace-nowrap">Kolhapur, India</span>
               </li>
             </ul>
 
