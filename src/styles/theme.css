@@ -150,21 +150,21 @@
     font-size: clamp(1.6rem, 3vw, 2.4rem);
     font-weight: 800;
     line-height: 1.25;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Playfair Display', serif;
   }
 
   h3 {
     font-size: clamp(1.2rem, 2vw, 1.6rem);
     font-weight: 700;
     line-height: 1.35;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Playfair Display', serif;
   }
 
   h4 {
     font-size: var(--text-base);
     font-weight: 700;
     line-height: 1.4;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Playfair Display', serif;
   }
 
   label {
@@ -187,6 +187,6 @@
   }
 
   p {
-    font-family: 'Nunito Sans', 'Nunito', sans-serif;
+    font-family: 'Nunito', 'Nunito Sans', sans-serif;
   }
 }

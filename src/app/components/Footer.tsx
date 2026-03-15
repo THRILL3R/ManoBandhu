@@ -1,20 +1,22 @@
 import { Link } from "react-router";
-import { Heart } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import './Footer.css';
 
 export function Footer() {
   return (
     <footer
-      className="relative text-white overflow-hidden py-16"
+      className="relative text-white overflow-hidden py-2"
       style={{
-        backgroundColor: "#06221c", // Dark green shade matching the site
+        backgroundColor: "#06221c",
         fontFamily: "'Nunito', sans-serif",
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-12">
 
         {/* Brand Column */}
-        <div className="md:col-span-4 flex flex-col items-start text-left">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="flex flex-col items-start text-left">
+          {/* Logo + Name */}
+          <div className="flex items-center gap-3 mb-5">
             <div className="w-14 h-14 flex items-center justify-center">
               <img src="/mb-white-logo.png" alt="ManoBandhu Logo" className="w-full h-full object-contain" />
             </div>
@@ -25,61 +27,104 @@ export function Footer() {
               ManoBandhu
             </span>
           </div>
-          <p className="text-sm text-[#8fa8a1] leading-relaxed max-w-[280px]">
-            © copyright ManoBandhu 2026.<br />All rights reserved.
+
+
+          {/* Description */}
+          <p className="text-sm text-[#c4d6cf] leading-relaxed max-w-[280px] mb-4">
+            ManoBandhu is a mental wellness initiative dedicated to making emotional well-being accessible, daily, and deeply human — through digital tools, real-world experiences, and the warmth of community.
           </p>
+
+          {/* Sanskrit Tagline */}
+          <p
+            className="text-sm font-bold mb-6 max-w-[280px]"
+            style={{ color: "#4ade80", fontFamily: "'Nunito', sans-serif" }}
+          >
+            "Mano" (मनो) + "Bandhu" (बंधु) — Friend of the Mind
+          </p>
+
+
         </div>
 
         {/* Links Grid */}
-        <div className="md:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
 
-          {/* Pages */}
+          {/* EXPLORE */}
           <div>
-            <h4 className="font-bold text-base mb-5 tracking-wide text-white">Pages</h4>
+            <h4 className="font-bold text-base mb-5 tracking-wide text-white uppercase">EXPLORE</h4>
             <ul className="space-y-4 text-[15px] font-medium text-[#c4d6cf]">
-              <li><Link to="/"        className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link to="/about"   className="hover:text-white transition-colors">About</Link></li>
+              <li><Link to="/"         className="hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/about"    className="hover:text-white transition-colors">About</Link></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
-              <li><Link to="/blogs"   className="hover:text-white transition-colors">Explore the Blog</Link></li>
-              <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-              <li><Link to="/events"  className="hover:text-white transition-colors">Events</Link></li>
-            </ul>
-          </div>
-
-          {/* Socials */}
-          <div>
-            <h4 className="font-bold text-base mb-5 tracking-wide text-white">Socials</h4>
-            <ul className="space-y-4 text-[15px] font-medium text-[#c4d6cf]">
+              <li><Link to="/blogs"    className="hover:text-white transition-colors">Blog</Link></li>
               <li>
-                <a href="https://www.instagram.com/mano.bandhu?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/company/manobandhu-mindcare-services/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+                <Link 
+                  to="/#waitlist" 
+                  className="hover:text-white transition-colors"
+                  onClick={(e) => {
+                    if (window.location.pathname === '/') {
+                      e.preventDefault();
+                      document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                >
+                  Join the Study
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* COMPANY */}
           <div>
-            <h4 className="font-bold text-base mb-5 tracking-wide text-white">Legal</h4>
+            <h4 className="font-bold text-base mb-5 tracking-wide text-white uppercase">COMPANY</h4>
             <ul className="space-y-4 text-[15px] font-medium text-[#c4d6cf]">
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
+              <li><Link to="/about"    className="hover:text-white transition-colors">Our Story</Link></li>
+              <li><Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms-of-use"   className="hover:text-white transition-colors">Terms of Use</Link></li>
+              <li><Link to="/contact"  className="hover:text-white transition-colors">Contact Us</Link></li>
             </ul>
           </div>
 
-          {/* Register */}
+          {/* CONTACT */}
           <div>
-            <h4 className="font-bold text-base mb-5 tracking-wide text-white">Register</h4>
+            <h4 className="font-bold text-base mb-5 tracking-wide text-white uppercase">CONTACT</h4>
             <ul className="space-y-4 text-[15px] font-medium text-[#c4d6cf]">
-              <li><Link to="/signup" className="hover:text-white transition-colors">Sign Up</Link></li>
-              <li><Link to="/login" className="hover:text-white transition-colors">Login</Link></li>
-              <li><Link to="/forgot-password" className="hover:text-white transition-colors">Forgot Password</Link></li>
+              <li className="flex items-center gap-3">
+                <Mail size={18} className="text-[#4ade80]" />
+                <a href="mailto:hello@manobandhu.com" className="hover:text-white transition-colors">hello@manobandhu.com</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone size={18} className="text-[#4ade80]" />
+                <a href="tel:+918087151656" className="hover:text-white transition-colors">+91 80871 51656</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <MapPin size={18} className="text-[#4ade80]" />
+                <span>Kolhapur, India</span>
+              </li>
             </ul>
+
+            <div className="card">
+              <a href="https://www.instagram.com/mano.bandhu/" target="_blank" rel="noopener noreferrer" className="socialContainer containerOne">
+                <svg className="socialSvg instagramSvg" viewBox="0 0 16 16"> <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"></path> </svg>
+              </a>
+              
+              <a href="https://www.linkedin.com/company/manobandhu-mindcare-services/" target="_blank" rel="noopener noreferrer" className="socialContainer containerThree">
+                <svg className="socialSvg linkdinSvg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg>
+              </a>
+              
+              <a href="https://wa.me/918087151656" target="_blank" rel="noopener noreferrer" className="socialContainer containerFour">
+                <svg className="socialSvg whatsappSvg" viewBox="0 0 16 16"> <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"></path> </svg>
+              </a>
+            </div>
           </div>
 
         </div>
+      </div>
+
+      {/* Copyright Bottom Center */}
+      <div className="border-t border-white/5 mt-8 pt-6 pb-4 text-center">
+        <p className="text-sm text-[#8fa8a1] leading-relaxed">
+          © 2026 ManoBandhu Mindcare Services. All rights reserved. Made with ❤️ for minds across India
+        </p>
       </div>
 
       {/* Giant Watermark Text */}
@@ -92,7 +137,7 @@ export function Footer() {
           lineHeight: 0.8,
           color: "rgba(255, 255, 255, 0.03)",
           letterSpacing: "-0.02em",
-          transform: "translateY(15%)", /* pulls text up so it overlaps bottom */
+          transform: "translateY(15%)",
           whiteSpace: "nowrap",
         }}
         aria-hidden="true"

@@ -48,8 +48,8 @@ const team = [
     bg: "#F5F3FF",
     img: "https://images.unsplash.com/photo-1635341539956-f71faf82d9df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxJbmRpYW4lMjB3b21hbiUyMHRoZXJhcGlzdCUyMGNvdW5zZWxvciUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzMwNDQyMDZ8MA&ixlib=rb-4.1.0&q=80&w=400",
     credentials: ["PG Diploma Counselling Psychology (TISS)", "20+ Years Experience", "Somatic & Mindfulness Expert"],
-    quote: "Meaningful self-understanding and sustainable emotional change — that's the journey I walk with every individual.",
-    bio: "With over 20 years of professional experience and formal training from TISS, Kkomal integrates counselling psychology, mindfulness, somatic awareness, and reflective practices to support hundreds of adults navigate identity, relationships, boundaries, and emotional overwhelm.",
+    quote: "Kkomal’s holistic approach emphasizes that there is no one-size-fits-all solution to happiness, health, or creativity.",
+    bio: "Kkomal Narsingani is a dedicated Therapist, Facilitator, and Wellness Coach with over 20 years of experience. With a PGD from TISS, she integrates Reiki, Music, and Buddhist Psychology into her practice.",
   },
 ];
 
@@ -167,10 +167,7 @@ export function Team() {
               </div>
             </div>
             <p className="mb-4" style={{ color: "#4B5563", lineHeight: "1.75" }}>
-              With over <strong>20 years of professional experience</strong> and formal training in counselling psychology,
-              Kkomal has worked with hundreds of adults navigating identity, relationships, boundaries, and
-              emotional overwhelm. Her practice integrates <strong>counselling psychology, mindfulness, somatic awareness,
-              and reflective practices</strong> to support meaningful self-understanding and sustainable emotional change.
+              Kkomal Narsingani is a dedicated Therapist, Facilitator, and Wellness Coach with over 20 years of experience, transitioning from HRM to Mental Health in 2017. With a PGD in Counselling Psychology from TISS, she is also a Reiki Master and Clinical Musician, with a deep understanding of Buddhist Psychology. Kkomal’s approach is holistic, emphasizing that there is no one-size-fits-all solution to achieving happiness, health, productivity, or creativity. She is committed to relentlessly exploring human nature to help others live better lives.
             </p>
             <div className="flex flex-wrap gap-3">
               {[

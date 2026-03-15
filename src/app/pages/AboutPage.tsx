@@ -28,8 +28,8 @@ export function AboutPage() {
       role: "Founding Member, Advisor & Wellbeing Consultant",
       image: "👩‍🏫",
       bio: [
-        "With over 20 years of professional experience and formal training in counselling psychology, Kkomal has worked with hundreds of adults navigating identity, relationships, boundaries, and emotional overwhelm.",
-        "She integrates counselling psychology, mindfulness, somatic awareness, and reflective practices to support meaningful self-understanding and sustainable emotional change. Kkomal leads our community programs, workshops, and circles — creating spaces where people can connect, heal, and grow together."
+        "Kkomal Narsingani is a dedicated Therapist, Facilitator, and Wellness Coach with over 20 years of experience, transitioning from HRM to Mental Health in 2017. With a PGD in Counselling Psychology from TISS, she is also a Reiki Master and Clinical Musician, with a deep understanding of Buddhist Psychology.",
+        "Kkomal’s approach is holistic, emphasizing that there is no one-size-fits-all solution to achieving happiness, health, productivity, or creativity. She is committed to relentlessly exploring human nature to help others live better lives."
       ],
       gradient: "from-cyan-400 to-cyan-600"
     }
@@ -38,15 +38,15 @@ export function AboutPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 via-white to-emerald-50">
       {/* Hero Section */}
-      <section className="py-20 text-white" style={{ backgroundColor: "#2d7a76" }}>
+      <section className="pt-16 pb-6 text-white" style={{ backgroundColor: "#489590" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="mb-6">OUR STORY</h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <h1 className="text-6xl md:text-7xl font-serif text-white mb-2 leading-tight tracking-tight">Our Story</h1>
+            <p className="text-[17px] md:text-lg text-white/85 max-w-2xl mx-auto leading-relaxed font-light">
               We Build the Bridge Between Healing and Living
             </p>
           </motion.div>
@@ -68,7 +68,7 @@ export function AboutPage() {
               </p>
               
               <p>
-                India has <strong>197 million people who need mental health support</strong> — but existing solutions focus on therapy access or passive content. ManoBandhu fills the gap with a <strong>habit-based, reflective, and structured emotional infrastructure</strong>.
+                India has <strong>197 million people who need mental health support —(Global Burden of Disease Study, The Lancet, 2017)</strong> but existing solutions focus on therapy access or passive content. ManoBandhu fills the gap with a <strong>habit-based, reflective, and structured emotional infrastructure</strong>.
               </p>
               
               <p>
@@ -80,7 +80,7 @@ export function AboutPage() {
       </section>
 
       {/* Section 2 — Our Foundation */}
-      <section className="py-20 bg-gradient-to-b from-white to-teal-50">
+      <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -89,64 +89,61 @@ export function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="mb-4 text-emerald-800">Built on Four Core Pillars</h2>
+            <h2 className="mb-4 text-gray-900">Built on Four Core Pillars</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Everything in ManoBandhu flows from these principles — they shape every feature, every interaction, every moment.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-teal-400"
-            >
-              <h3 className="text-teal-700 mb-4 text-xl">Pillar 1 — Emotional Awareness</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Learn to recognise, name, and sit with your emotions rather than suppress or escape them. Awareness is the first step to change.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-emerald-400"
-            >
-              <h3 className="text-emerald-700 mb-4 text-xl">Pillar 2 — Nervous System Regulation</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Structured tools to calm your body and mind in moments of stress, overwhelm, or emotional flooding — wherever you are.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-cyan-400"
-            >
-              <h3 className="text-cyan-700 mb-4 text-xl">Pillar 3 — Preventive Mental Health</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Well-being is built daily, not just in crisis. ManoBandhu helps you build emotional resilience before you need it most.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-blue-400"
-            >
-              <h3 className="text-blue-700 mb-4 text-xl">Pillar 4 — Human Connection</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Digital tools that bring you closer to the physical world — events, community circles, nature expeditions, and real people.
-              </p>
-            </motion.div>
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              {
+                icon: "🧠",
+                title: "Emotional Awareness",
+                description: "Learn to recognise, name, and sit with your emotions rather than suppress or escape them. Awareness is the first step to change.",
+                iconBg: "#fce7f3",
+              },
+              {
+                icon: "🫀",
+                title: "Nervous System Regulation",
+                description: "Structured tools to calm your body and mind in moments of stress, overwhelm, or emotional flooding — wherever you are.",
+                iconBg: "#fee2e2",
+              },
+              {
+                icon: "✳️",
+                title: "Preventive Mental Health",
+                description: "Well-being is built daily, not just in crisis. ManoBandhu helps you build emotional resilience before you need it most.",
+                iconBg: "#d1fae5",
+              },
+              {
+                icon: "👥",
+                title: "Human Connection",
+                description: "Digital tools that bring you closer to the physical world — events, community circles, nature expeditions, and real people.",
+                iconBg: "#ede9fe",
+              },
+            ].map((pillar, index) => (
+              <motion.div
+                key={pillar.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white p-7 rounded-2xl shadow-md border border-gray-100 flex flex-col"
+              >
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 text-2xl"
+                  style={{ backgroundColor: pillar.iconBg }}
+                >
+                  {pillar.icon}
+                </div>
+                <h3 className="font-bold text-gray-900 text-lg mb-3 leading-tight" style={{ fontFamily: "'Nunito', sans-serif" }}>
+                  {pillar.title}
+                </h3>
+                <p className="text-sm text-gray-500 leading-relaxed">
+                  {pillar.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

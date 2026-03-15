@@ -5,12 +5,22 @@ import { Footer } from "./components/Footer";
 import { Toaster } from "./components/ui/sonner";
 
 export function Root() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
-  // Scroll to top on every page navigation
+  // Handle scrolling on navigation
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, [pathname]);
+    if (hash) {
+      const id = hash.replace('#', '');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [pathname, hash]);
 
   return (
     <div className="min-h-screen">

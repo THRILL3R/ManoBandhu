@@ -29,36 +29,24 @@ import {
   SelectValue,
 } from "../components/ui/select";
 import { toast } from "sonner";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
-import islandImage from "../../assets/5542da11d53acb4e3b8064b4e656553934e96428.png";
-import img1 from "../../assets/095cffbe8cfa0dc7b54b3da09fc8cee8f5649ed1.png";
-import img2 from "../../assets/20cd0827634f2e575e9d3129dcfe28a05128a11c.png";
-import img3 from "../../assets/371791d8d66ce3b3c8b362f06455cfabcba2a169.png";
+
 
 export function ServicesPage() {
-  const [workshopForm, setWorkshopForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    mode: "",
-    message: ""
-  });
 
-  const handleWorkshopSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success("Thank you for your interest! We'll contact you soon.");
-    setWorkshopForm({ name: "", email: "", phone: "", mode: "", message: "" });
-  };
+  const [destinationTab, setDestinationTab] = useState<"major" | "all">("major");
+  const [activeService, setActiveService] = useState<"preventive" | "curative">("preventive");
+
+
 
   const destinations = [
     {
       icon: Leaf,
-      name: "The Ground",
+      name: "The Garden",
       category: "MORNING & NIGHT RITUAL",
-      description: "Your sacred daily clearing. Begin each morning with a gentle intention and close each night with a soft reflection. The Ground is where your emotional habits take root — one small ritual at a time.",
+      description: "Your sacred daily clearing. Begin each morning with a gentle intention and close each night with a soft reflection. The Garden is where your emotional habits take root — one small ritual at a time.",
       status: "MAJOR",
       tags: ["Morning ritual", "Night ritual", "Habit seeds", "Daily intentions"],
-      image: islandImage,
+      image: "/the-garden.jpeg",
       themeClasses: {
          bg: "bg-[#e8fbf0]",
          category: "text-[#34d399]",
@@ -75,7 +63,7 @@ export function ServicesPage() {
       description: "When the waves feel too high, the lighthouse is always lit for you. A calm, non-judgmental space for your hardest moments — with breathing tools, grounding techniques, and gentle presence.",
       status: "MAJOR",
       tags: ["Emotional regulation", "Breathing tools", "Grounding", "Immediate support"],
-      image: img1,
+      image: "/the-lighthouse.jpeg",
       themeClasses: {
          bg: "bg-[#fff8e7]",
          category: "text-orange-400",
@@ -92,7 +80,7 @@ export function ServicesPage() {
       description: "Discover and join wellbeing events, workshops, and community gatherings. Connect with others on similar journeys.",
       status: "AVAILABLE",
       tags: ["Workshops", "Community", "Gatherings", "Events"],
-      image: img2,
+      image: "/The Fair.jpeg",
       themeClasses: {
          bg: "bg-pink-50",
          category: "text-pink-500",
@@ -109,7 +97,7 @@ export function ServicesPage() {
       description: "Receive weekly reflective insights personalized to your journey. Gentle feedback that encourages growth, not grades that induce fear.",
       status: "AVAILABLE",
       tags: ["Insights", "Feedback", "Growth", "Journey"],
-      image: img3,
+      image: "/the-cave.jpeg",
       themeClasses: {
          bg: "bg-blue-50",
          category: "text-blue-500",
@@ -126,7 +114,7 @@ export function ServicesPage() {
       description: "Designed to complement and enhance your therapy sessions. Track insights, prepare for sessions, and integrate learnings into daily life.",
       status: "AVAILABLE",
       tags: ["Therapy", "Integration", "Tracking", "Preparation"],
-      image: islandImage,
+      image: "/Therapy Support House.jpeg",
       themeClasses: {
          bg: "bg-teal-50",
          category: "text-teal-500",
@@ -141,18 +129,15 @@ export function ServicesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 via-white to-emerald-50">
       {/* Hero Section */}
-      <section className="py-20 text-white" style={{ backgroundColor: "#2d7a76" }}>
+      <section className="pt-16 pb-6 text-white" style={{ backgroundColor: "#489590" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="w-20 h-20 bg-white/20 backdrop-blur rounded-full flex items-center justify-center mx-auto mb-6">
-              <Smartphone className="w-10 h-10 text-white" />
-            </div>
-            <h1 className="mb-6">Our Services</h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+            <h1 className="text-6xl md:text-7xl font-serif text-white mb-2 leading-tight tracking-tight">Our Services</h1>
+            <p className="text-[17px] md:text-lg text-white/85 max-w-2xl mx-auto font-light">
               Comprehensive mental wellbeing through prevention and care
             </p>
           </motion.div>
@@ -162,23 +147,44 @@ export function ServicesPage() {
       {/* Two Main Divisions */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Tabs defaultValue="preventive" className="w-full">
+          <div className="w-full">
             <div className="flex justify-center mb-12">
-              <TabsList className="grid w-full max-w-2xl grid-cols-2 h-14">
-                <TabsTrigger value="preventive" className="text-lg">
-                  <Shield className="w-5 h-5 mr-2" />
-                  Preventive Wellbeing
-                </TabsTrigger>
-                <TabsTrigger value="curative" className="text-lg">
-                  <HandHeart className="w-5 h-5 mr-2" />
-                  Curative Support
-                </TabsTrigger>
-              </TabsList>
+              <Select
+                value={activeService}
+                onValueChange={(value: string) => setActiveService(value as "preventive" | "curative")}
+              >
+                <SelectTrigger className="w-full max-w-xs h-14 text-lg font-medium border-2 border-teal-200 bg-white shadow-sm rounded-xl focus:ring-teal-500 focus:border-teal-500">
+                  <div className="flex items-center gap-2">
+                    {activeService === "preventive" ? (
+                      <><Shield className="w-5 h-5 text-teal-600" /> Preventive Wellbeing</>
+                    ) : (
+                      <><HandHeart className="w-5 h-5 text-emerald-600" /> Curative Support</>
+                    )}
+                  </div>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="preventive">
+                    <div className="flex items-center gap-2">
+                      <Shield className="w-4 h-4" /> Preventive Wellbeing
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="curative">
+                    <div className="flex items-center gap-2">
+                      <HandHeart className="w-4 h-4" /> Curative Support
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
-            {/* Preventive Wellbeing Tab */}
-            <TabsContent value="preventive">
+            {/* Preventive Wellbeing Content */}
+            {activeService === "preventive" && (
               <div className="space-y-16">
+
+                {/* ManoBandhu Platform Heading */}
+                <div className="text-center mb-0">
+                  <h2 className="text-4xl md:text-5xl font-serif text-[#1c5f3b]">ManoBandhu Platform</h2>
+                </div>
 
                 {/* Feature Strip */}
                 <div className="text-center mb-6">
@@ -225,17 +231,23 @@ export function ServicesPage() {
                   <div>
                     <div className="flex justify-center mb-12">
                       <div className="bg-white rounded-full p-2 flex shadow-sm border border-gray-100 items-center justify-between w-full max-w-sm">
-                        <button className="flex-1 px-6 py-2 rounded-full bg-teal-700 text-white font-medium text-sm transition-colors text-center">
+                        <button
+                          onClick={() => setDestinationTab("major")}
+                          className={`flex-1 px-6 py-2 rounded-full font-medium text-sm transition-colors text-center ${destinationTab === "major" ? "bg-teal-700 text-white" : "text-teal-700 hover:bg-teal-50"}`}
+                        >
                           Major Destinations
                         </button>
-                        <button className="flex-1 px-6 py-2 rounded-full text-teal-700 font-medium text-sm hover:bg-teal-50 transition-colors text-center">
+                        <button
+                          onClick={() => setDestinationTab("all")}
+                          className={`flex-1 px-6 py-2 rounded-full font-medium text-sm transition-colors text-center ${destinationTab === "all" ? "bg-teal-700 text-white" : "text-teal-700 hover:bg-teal-50"}`}
+                        >
                           All 8 Destinations
                         </button>
                       </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8">
-                      {destinations.map((destination, index) => (
+                      {(destinationTab === "major" ? destinations.filter(d => d.name !== "The Cave") : destinations).map((destination, index) => (
                         <motion.div
                           key={destination.name}
                           initial={{ opacity: 0, y: 20 }}
@@ -244,8 +256,8 @@ export function ServicesPage() {
                           transition={{ duration: 0.6, delay: index * 0.1 }}
                           className={`rounded-3xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow flex flex-col ${destination.themeClasses.bg}`}
                         >
-                          <div className="relative h-56 w-full">
-                            <img src={destination.image} alt={destination.name} className="w-full h-full object-cover" />
+                          <div className="relative h-72 w-full">
+                            <img src={destination.image} alt={destination.name} className="w-full h-full object-contain" />
                             {/* Icon Badge */}
                             <div className="absolute top-4 left-4 bg-white p-2.5 rounded-2xl shadow-sm">
                               <destination.icon className={`w-6 h-6 ${destination.themeClasses.icon}`} />
@@ -274,8 +286,8 @@ export function ServicesPage() {
                         </motion.div>
                       ))}
 
-                      {/* Coming Soon Cards */}
-                      {[1, 2, 3, 4].map((num) => (
+                      {/* Coming Soon Cards - only in All tab */}
+                      {destinationTab === "all" && [1, 2, 3].map((num) => (
                         <motion.div
                           key={`coming-${num}`}
                           initial={{ opacity: 0, y: 20 }}
@@ -352,10 +364,10 @@ export function ServicesPage() {
                   </div>
                 </motion.div>
               </div>
-            </TabsContent>
+            )}
 
-            {/* Curative Support Tab */}
-            <TabsContent value="curative">
+            {/* Curative Support Content */}
+            {activeService === "curative" && (
               <div className="space-y-16">
                 {/* Intro */}
                 <motion.div
@@ -395,75 +407,7 @@ export function ServicesPage() {
                     </span>
                   </div>
 
-                  {/* Interest Form */}
-                  <div className="bg-white rounded-xl p-8 shadow-lg">
-                    <h4 className="font-bold mb-6 text-center">Register Your Interest</h4>
-                    <form onSubmit={handleWorkshopSubmit} className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <div>
-                          <Label htmlFor="workshop-name">Full Name *</Label>
-                          <Input
-                            id="workshop-name"
-                            value={workshopForm.name}
-                            onChange={(e) => setWorkshopForm({ ...workshopForm, name: e.target.value })}
-                            required
-                            placeholder="Your name"
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="workshop-email">Email Address *</Label>
-                          <Input
-                            id="workshop-email"
-                            type="email"
-                            value={workshopForm.email}
-                            onChange={(e) => setWorkshopForm({ ...workshopForm, email: e.target.value })}
-                            required
-                            placeholder="you@example.com"
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="workshop-phone">Mobile Number (Optional)</Label>
-                          <Input
-                            id="workshop-phone"
-                            type="tel"
-                            value={workshopForm.phone}
-                            onChange={(e) => setWorkshopForm({ ...workshopForm, phone: e.target.value })}
-                            placeholder="+91 98765 43210"
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="workshop-mode">Preferred Mode *</Label>
-                          <Select
-                            value={workshopForm.mode}
-                            onValueChange={(value) => setWorkshopForm({ ...workshopForm, mode: value })}
-                            required
-                          >
-                            <SelectTrigger id="workshop-mode">
-                              <SelectValue placeholder="Select mode" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="online">Online</SelectItem>
-                              <SelectItem value="offline">Offline</SelectItem>
-                              <SelectItem value="both">Both</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="md:col-span-2">
-                          <Label htmlFor="workshop-message">Message (Optional)</Label>
-                          <Textarea
-                            id="workshop-message"
-                            value={workshopForm.message}
-                            onChange={(e) => setWorkshopForm({ ...workshopForm, message: e.target.value })}
-                            placeholder="Tell us what you're looking for..."
-                            rows={3}
-                          />
-                        </div>
-                      </div>
-                      <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700">
-                        Submit Interest
-                      </Button>
-                    </form>
-                  </div>
+
                 </div>
 
                 {/* Listening Circles */}
@@ -565,8 +509,8 @@ export function ServicesPage() {
                   </motion.div>
                 </div>
               </div>
-            </TabsContent>
-          </Tabs>
+            )}
+          </div>
         </div>
       </section>
     </div>

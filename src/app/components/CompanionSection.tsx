@@ -6,7 +6,7 @@ const dogNames = [
 ];
 
 const dogTraits = [
-    { emoji: "🌅", trait: "Greets you every morning on The Ground" },
+    { emoji: "🌅", trait: "Greets you every morning on The Garden" },
     { emoji: "🔦", trait: "Sits quietly beside you at The Lighthouse" },
     { emoji: "🪨", trait: "Curls up with you in The Cave" },
     { emoji: "🎡", trait: "Runs ahead of you at The Fair" },

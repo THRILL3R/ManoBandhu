@@ -53,7 +53,7 @@ const pillars = [
 ];
 
 const timeline = [
-  { year: "The Problem", text: "197 million Indians need mental health support, yet access remains a crisis-response model, not a daily practice." },
+  { year: "The Problem", text: "197 million Indians need mental health support —(Global Burden of Disease Study, The Lancet, 2017), yet access remains a crisis-response model, not a daily practice." },
   { year: "The Gap", text: "Existing solutions offer therapy access or passive content — but no structured emotional infrastructure for daily habit-building." },
   { year: "The Insight", text: "Samruddhi's personal therapy journey revealed that consistency, reflection, and community are the real drivers of lasting change." },
   { year: "The Solution", text: "ManoBandhu — a gamified island universe that makes daily emotional care engaging, evidence-based, and deeply personal." },
@@ -200,7 +200,7 @@ export function Mission() {
                 to Build This
               </h2>
               <p className="max-w-2xl mx-auto mb-6" style={{ color: "rgba(255,255,255,0.8)", lineHeight: "1.7" }}>
-                India has 197 million people who need mental health support. ManoBandhu is here to be
+                India has 197 million people who need mental health support —(Global Burden of Disease Study, The Lancet, 2017). ManoBandhu is here to be
                 the daily companion — the mind's friend — for every single one of them.
               </p>
               <div className="flex flex-wrap justify-center gap-4">

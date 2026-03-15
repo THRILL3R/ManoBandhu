@@ -68,7 +68,7 @@ export function About() {
               </div>
             </div>
             <p className="mb-4" style={{ color: "#374151" }}>
-              India has <strong>197 million people</strong> who need mental health support — but existing solutions
+              India has <strong>197 million people</strong> who need mental health support —(Global Burden of Disease Study, The Lancet, 2017) but existing solutions
               focus on therapy access or passive content. ManoBandhu fills the gap with a habit-based,
               reflective, and structured emotional infrastructure.
             </p>

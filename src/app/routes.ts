@@ -4,10 +4,11 @@ import { NewHome } from "./pages/NewHome";
 import { AboutPage } from "./pages/AboutPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { BlogsPage } from "./pages/BlogsPage";
-import { EventsPage } from "./pages/EventsPage";
+import { BlogPostPage } from "./pages/BlogPostPage";
 import { ContactPage } from "./pages/ContactPage";
-import { OrganizerDashboard } from "./pages/OrganizerDashboard";
 import { PilotStudyPage } from "./pages/PilotStudyPage";
+import { PrivacyPolicy } from "./pages/PrivacyPolicy";
+import { TermsOfUse } from "./pages/TermsOfUse";
 
 export const router = createBrowserRouter([
   {
@@ -18,10 +19,11 @@ export const router = createBrowserRouter([
       { path: "about", Component: AboutPage },
       { path: "services", Component: ServicesPage },
       { path: "blogs", Component: BlogsPage },
-      { path: "events", Component: EventsPage },
-      { path: "events/dashboard", Component: OrganizerDashboard },
+      { path: "blogs/:id", Component: BlogPostPage },
       { path: "contact", Component: ContactPage },
       { path: "pilot-study", Component: PilotStudyPage },
+      { path: "privacy-policy", Component: PrivacyPolicy },
+      { path: "terms-of-use", Component: TermsOfUse },
     ],
   },
 ]);

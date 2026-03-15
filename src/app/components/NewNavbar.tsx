@@ -5,29 +5,22 @@ import './RippleBtn.css';
 
 export function NewNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
-    { name: "Explore the Blog", path: "/blogs" },
+    { name: "Blog", path: "/blogs" },
     { name: "Contact", path: "/contact" },
-    { name: "Events", path: "/events" },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
-
-  // Enforce solid background on pages that don't have a dark hero section
-  const isLightPage = location.pathname.startsWith('/blog') || location.pathname.startsWith('/events');
-  const isNavSolid = scrolled || isLightPage;
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const isActive = (path: string) => {
+    if (path === "/blogs") {
+      return location.pathname.startsWith("/blogs");
+    }
+    return location.pathname === path;
+  };
 
   return (
     <>
@@ -36,10 +29,8 @@ export function NewNavbar() {
         className="fixed top-0 left-0 right-0 z-[1001]"
         style={{
           transition: "background 0.3s ease, box-shadow 0.3s ease",
-          background: isNavSolid ? "rgba(43, 110, 106, 0.95)" : "transparent",
-          backdropFilter: isNavSolid ? "blur(16px)" : "none",
-          boxShadow: isNavSolid ? "0 2px 24px rgba(0,0,0,0.18)" : "none",
-          borderBottom: isNavSolid ? "1px solid rgba(255,255,255,0.1)" : "none",
+          background: "rgba(72, 149, 144, 0.97)",
+          backdropFilter: "blur(16px)",
         }}
       >
         {/* ── Desktop container ── */}
@@ -78,7 +69,7 @@ export function NewNavbar() {
           <div
             className="flex items-center gap-1"
             style={{
-              background: isNavSolid ? "rgba(255,255,255,0.1)" : "rgba(30, 90, 85, 0.75)",
+              background: "rgba(255,255,255,0.1)",
               backdropFilter: "blur(14px)",
               border: "1px solid rgba(255,255,255,0.25)",
               borderRadius: "999px",
@@ -122,10 +113,10 @@ export function NewNavbar() {
 
           {/* CTA — right */}
           <Link
-            to="/pilot-study"
+            to="/#waitlist"
             className="ripple-btn"
             style={{
-              background: isNavSolid ? "#3D9990" : "#2E7B74",
+              background: "#3D9990",
               transition: "background 0.3s ease",
             }}
             onClick={(e) => {

@@ -44,18 +44,15 @@ export function ContactPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 via-white to-emerald-50">
       {/* Hero Section */}
-      <section className="py-20 text-white" style={{ backgroundColor: "#2d7a76" }}>
+      <section className="pt-16 pb-6 text-white" style={{ backgroundColor: "#489590" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="w-20 h-20 bg-white/20 backdrop-blur rounded-full flex items-center justify-center mx-auto mb-6">
-              <MessageCircle className="w-10 h-10 text-white" />
-            </div>
-            <h1 className="mb-6">Get In Touch</h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+            <h1 className="text-6xl md:text-7xl font-serif text-white mb-2 leading-tight tracking-tight">Get In Touch</h1>
+            <p className="text-[17px] md:text-lg text-white/85 max-w-2xl mx-auto font-light">
               We'd love to hear from you. Whether you have questions, partnership ideas, 
               or career interests — let's connect.
             </p>
@@ -177,10 +174,6 @@ export function ContactPage() {
                   <li className="flex items-start gap-3">
                     <span className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center text-xs font-bold mt-0.5">3</span>
                     <span>We'll reach out via email or phone based on your preference.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center text-xs font-bold mt-0.5">4</span>
-                    <span>For urgent matters, please call us directly at +91 8087151656.</span>
                   </li>
                 </ol>
               </div>

@@ -1,0 +1,69 @@
+
+.card {
+  width: fit-content;
+  height: fit-content;
+  background-color: transparent; /* Changed from light gray to match footer better if needed, but keeping user's structure */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+/* for all social containers*/
+.socialContainer {
+  width: 38px;
+  height: 38px;
+  background-color: #06221c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: .3s;
+  border-radius: 8px;
+}
+/* instagram*/
+.containerOne:hover {
+  background-color: #d62976;
+  transition-duration: .3s;
+}
+/* linkedin*/
+.containerThree:hover {
+  background-color: #0072b1;
+  transition-duration: .3s;
+}
+/* Whatsapp*/
+.containerFour:hover {
+  background-color: #128C7E;
+  transition-duration: .3s;
+}
+
+.socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: .3s;
+}
+
+.socialSvg {
+  width: 18px;
+}
+
+.socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+
+.socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
