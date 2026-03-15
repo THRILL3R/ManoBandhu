@@ -241,7 +241,7 @@ export function ServicesPage() {
                           onClick={() => setDestinationTab("all")}
                           className={`flex-1 px-6 py-2 rounded-full font-medium text-sm transition-colors text-center ${destinationTab === "all" ? "bg-teal-700 text-white" : "text-teal-700 hover:bg-teal-50"}`}
                         >
-                          All 8 Destinations
+                          All 9 Destinations
                         </button>
                       </div>
                     </div>
@@ -287,7 +287,7 @@ export function ServicesPage() {
                       ))}
 
                       {/* Coming Soon Cards - only in All tab */}
-                      {destinationTab === "all" && [1, 2, 3].map((num) => (
+                      {destinationTab === "all" && [1, 2, 3, 4].map((num) => (
                         <motion.div
                           key={`coming-${num}`}
                           initial={{ opacity: 0, y: 20 }}
