@@ -1,26 +1,10 @@
 /// <reference types="vite/client" />
 
-declare module "*.png" {
-    const src: string;
-    export default src;
+interface ImportMetaEnv {
+  readonly VITE_API_URL: string;
+  readonly VITE_SHEETS_URL: string;
 }
 
-declare module "*.jpg" {
-    const src: string;
-    export default src;
-}
-
-declare module "*.webp" {
-    const src: string;
-    export default src;
-}
-
-declare module "*.svg" {
-    const src: string;
-    export default src;
-}
-
-declare module "*.module.css" {
-    const classes: Record<string, string>;
-    export default classes;
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
 }

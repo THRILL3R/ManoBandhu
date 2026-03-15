@@ -23,16 +23,37 @@ export function ContactPage() {
     description: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Thank you for contacting us! Our team will get in touch with you shortly.");
-    setFormData({
-      name: "",
-      phone: "",
-      email: "",
-      reason: "",
-      description: "",
-    });
+    setIsSubmitting(true);
+
+    try {
+      const SHEETS_URL = import.meta.env.VITE_SHEETS_URL;
+      if (SHEETS_URL) {
+        await fetch(SHEETS_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...formData, sheet: "Contact" }),
+        });
+      }
+      
+      toast.success("Thank you for contacting us! Our team will get in touch with you shortly.");
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        reason: "",
+        description: "",
+      });
+    } catch (err) {
+      console.error("Sheets submission error:", err);
+      toast.error("Failed to send message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const reasonOptions = [
@@ -182,9 +203,10 @@ export function ContactPage() {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-primary hover:bg-teal-600"
+                disabled={isSubmitting}
+                className="w-full bg-primary hover:bg-teal-600 disabled:opacity-70"
               >
-                Send Message
+                {isSubmitting ? "Sending Message..." : "Send Message"}
               </Button>
             </form>
           </motion.div>

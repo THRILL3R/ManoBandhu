@@ -101,6 +101,7 @@ export function WaitlistSection() {
     setErrorMsg("");
 
     try {
+      // 1. Submit to Backend API
       const res = await fetch(`${API_BASE}/api/v1/waitlist`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -108,16 +109,28 @@ export function WaitlistSection() {
       });
       const json = await res.json();
 
-      if (res.status === 201) {
+      if (res.status === 201 || res.ok) {
+        // 2. Also submit to Google Sheets
+        const SHEETS_URL = import.meta.env.VITE_SHEETS_URL;
+        if (SHEETS_URL) {
+          try {
+            await fetch(SHEETS_URL, {
+              method: "POST",
+              mode: "no-cors", // Required for Google Apps Script
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ ...form, sheet: "Waitlist" }),
+            });
+          } catch (e) {
+            console.error("Sheets sync failed:", e);
+          }
+        }
         setStatus("success");
       } else if (res.status === 200) {
-        // 200 = already registered (our service returns 200 for duplicates)
+        // 200 = already registered
         setStatus("duplicate");
-      } else if (!res.ok) {
+      } else {
         setStatus("error");
         setErrorMsg(json.error?.message ?? "Something went wrong. Please try again.");
-      } else {
-        setStatus("success");
       }
     } catch {
       setStatus("error");
