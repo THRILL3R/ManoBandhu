@@ -101,38 +101,64 @@ export function WaitlistSection() {
     setErrorMsg("");
 
     try {
-      // 1. Submit to Backend API
-      const res = await fetch(`${API_BASE}/api/v1/waitlist`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, mobile: `+91${form.mobile.replace(/\s/g, "")}` }),
-      });
-      const json = await res.json();
-
-      if (res.status === 201 || res.ok) {
-        // 2. Also submit to Google Sheets
-        const SHEETS_URL = import.meta.env.VITE_SHEETS_URL;
-        if (SHEETS_URL) {
-          try {
-            await fetch(SHEETS_URL, {
-              method: "POST",
-              mode: "no-cors", // Required for Google Apps Script
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ ...form, sheet: "Waitlist" }),
-            });
-          } catch (e) {
-            console.error("Sheets sync failed:", e);
-          }
+      const payload = { ...form, mobile: `+91${form.mobile.replace(/\s/g, "")}` };
+      
+      // 1. Submit to Google Sheets (Reliable secondary storage)
+      const SHEETS_URL = import.meta.env.VITE_SHEETS_URL;
+      let sheetCaptured = false;
+      if (SHEETS_URL) {
+        try {
+          // Note: no-cors doesn't allow reading response, but typically works for Apps Script
+          await fetch(SHEETS_URL, {
+            method: "POST",
+            mode: "no-cors", 
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...form, sheet: "Waitlist" }),
+          });
+          sheetCaptured = true;
+        } catch (e) {
+          console.error("Google Sheets captured failed:", e);
         }
-        setStatus("success");
-      } else if (res.status === 200) {
-        // 200 = already registered
-        setStatus("duplicate");
-      } else {
-        setStatus("error");
-        setErrorMsg(json.error?.message ?? "Something went wrong. Please try again.");
       }
-    } catch {
+
+      // 2. Submit to Backend API
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/waitlist`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (res.status === 200) {
+          setStatus("duplicate");
+          return;
+        }
+
+        if (res.status === 201 || res.ok) {
+          setStatus("success");
+          return;
+        }
+
+        // If backend returned an error (e.g. 500), but we captured in sheets, show success
+        if (sheetCaptured) {
+          setStatus("success");
+        } else {
+          const json = await res.json();
+          setStatus("error");
+          setErrorMsg(json.error?.message ?? "Something went wrong. Please try again.");
+        }
+      } catch (backendErr) {
+        console.error("Backend submission failed:", backendErr);
+        // Fallback: If backend is down but sheet worked, show success
+        if (sheetCaptured) {
+          setStatus("success");
+        } else {
+          setStatus("error");
+          setErrorMsg("Service temporarily unavailable. Please try again later.");
+        }
+      }
+    } catch (err) {
+      console.error("Critical submission error:", err);
       setStatus("error");
       setErrorMsg("Something went wrong. Please try again.");
     }
