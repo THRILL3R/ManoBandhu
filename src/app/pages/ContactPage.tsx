@@ -30,6 +30,7 @@ export function ContactPage() {
     setIsSubmitting(true);
 
     try {
+      // 1. Submit to Google Sheets
       const SHEETS_URL = import.meta.env.VITE_SHEETS_URL;
       if (SHEETS_URL) {
         await fetch(SHEETS_URL, {
@@ -39,6 +40,7 @@ export function ContactPage() {
           body: JSON.stringify({ ...formData, sheet: "Contact" }),
         });
       }
+
       
       toast.success("Thank you for contacting us! Our team will get in touch with you shortly.");
       setFormData({

@@ -12,8 +12,9 @@ import { sendError } from './utils/response.js';
 import router from './routes/index.js';
 import subscriptionRoutes from './modules/subscriptions/subscriptions.routes.js';
 import { errorHandler } from './middleware/errorHandler.js';
-import { aiInsightsWorker, mediaCleanupWorker, notificationsWorker } from './jobs/workers.js';
-import { scheduleWeeklyInsights } from './jobs/scheduler.js';
+// Temporarily bypassed workers/scheduler so backend can start without Redis
+// import { aiInsightsWorker, mediaCleanupWorker, notificationsWorker } from './jobs/workers.js';
+// import { scheduleWeeklyInsights } from './jobs/scheduler.js';
 
 const app = express();
 
@@ -23,7 +24,14 @@ app.use(helmet());
 // ── 2. CORS ───────────────────────────────────────────────────────────────────
 app.use(
   cors({
-    origin:      env.FRONTEND_URL,
+    origin: (origin, callback) => {
+      if (!origin || origin === env.FRONTEND_URL || env.NODE_ENV === 'development') {
+        callback(null, true);
+      } else {
+        logger.warn(`[CORS] Rejected origin: ${origin}`);
+        callback(null, false);
+      }
+    },
     credentials: true,
   })
 );
@@ -83,14 +91,15 @@ app.use(errorHandler);
 // ── Start Server ──────────────────────────────────────────────────────────────
 async function start() {
   try {
-    await connectDB();
-    await connectRedis();
+    // Temporarily bypass strict connection crashes
+    try { await connectDB(); } catch (e) { logger.warn('DB connect failed, running without DB'); }
+    try { await connectRedis(); } catch (e) { logger.warn('Redis connect failed, running without Redis'); }
 
     // Workers self-register on import; reference them to keep alive + enable shutdown
-    logger.info(
-      `🔧 Workers: ${[aiInsightsWorker.name, mediaCleanupWorker.name, notificationsWorker.name].join(', ')}`
-    );
-    await scheduleWeeklyInsights();
+    // logger.info(
+    //   `🔧 Workers: ${[aiInsightsWorker.name, mediaCleanupWorker.name, notificationsWorker.name].join(', ')}`
+    // );
+    // await scheduleWeeklyInsights();
 
     const server = app.listen(env.PORT, () => {
       logger.info(`🚀 ManoBandhu API running on port ${env.PORT} [${env.NODE_ENV}]`);
@@ -100,11 +109,11 @@ async function start() {
     const shutdown = async (signal: string) => {
       logger.warn(`${signal} received — shutting down gracefully...`);
       server.close(async () => {
-        await Promise.allSettled([
-          aiInsightsWorker.close(),
-          mediaCleanupWorker.close(),
-          notificationsWorker.close(),
-        ]);
+        // await Promise.allSettled([
+        //   aiInsightsWorker.close(),
+        //   mediaCleanupWorker.close(),
+        //   notificationsWorker.close(),
+        // ]);
         await pool.end();
         await redis.quit();
         logger.info('Server, DB pool, Redis, and workers closed.');

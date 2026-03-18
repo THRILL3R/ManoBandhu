@@ -9,11 +9,11 @@ const indianMobile = z
   );
 
 export const WaitlistSchema = z.object({
-  full_name:  z.string().min(2).max(100),
-  email:      z.string().email(),
+  full_name:  z.string().min(2).max(100).trim(),
+  email:      z.string().email().toLowerCase().trim(),
   mobile:     indianMobile,
-  occupation: z.string().max(100).optional(),
-  city:       z.string().max(100).optional(),
+  occupation: z.string().max(100).trim().optional(),
+  city:       z.string().max(100).trim().optional(),
 });
 
 export type WaitlistInput = z.infer<typeof WaitlistSchema>;

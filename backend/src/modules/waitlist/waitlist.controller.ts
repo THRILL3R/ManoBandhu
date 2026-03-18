@@ -1,9 +1,9 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { WaitlistSchema } from './waitlist.schemas.js';
 import { joinWaitlist, getPilotWaitlist } from './waitlist.service.js';
 import { sendSuccess, sendError } from '../../utils/response.js';
 
-export async function joinWaitlistController(req: Request, res: Response): Promise<void> {
+export async function joinWaitlistController(req: Request, res: Response, next: NextFunction): Promise<void> {
   const parsed = WaitlistSchema.safeParse(req.body);
   if (!parsed.success) {
     sendError(res, 'VALIDATION_ERROR', parsed.error.issues[0]?.message ?? 'Invalid input', 422);
@@ -17,17 +17,21 @@ export async function joinWaitlistController(req: Request, res: Response): Promi
       sendSuccess(res, {
         message: "You're already on our waitlist! We'll be in touch soon.",
         id: result.id,
+        alreadyRegistered: true
       });
       return;
     }
 
     sendSuccess(
       res,
-      { message: "You're on the waitlist! Check your email for confirmation. 🌿" },
+      { 
+        message: "You're on the waitlist! Check your email for confirmation. 🌿",
+        alreadyRegistered: false
+      },
       201
     );
   } catch (err) {
-    sendError(res, 'INTERNAL_ERROR', 'Something went wrong. Please try again.', 500);
+    next(err);
   }
 }
 
@@ -37,3 +41,22 @@ export async function getPilotWaitlistController(req: Request, res: Response): P
   const result = await getPilotWaitlist(page, limit);
   sendSuccess(res, result);
 }
+
+import { sendConfirmationEmail } from '../../utils/emailService.js';
+
+export const notifyWaitlistController = async (req: Request, res: Response) => {
+  try {
+    const { email, name } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ success: false, message: "Email required" });
+    }
+
+    await sendConfirmationEmail(email, name);
+
+    return res.json({ success: true });
+  } catch (error) {
+    console.error("Email Error:", error);
+    return res.status(500).json({ success: false });
+  }
+};

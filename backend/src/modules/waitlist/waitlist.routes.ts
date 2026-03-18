@@ -1,14 +1,8 @@
-import { Router } from 'express';
-import { joinWaitlistController, getPilotWaitlistController } from './waitlist.controller.js';
-import { authenticate } from '../../middleware/authenticate.js';
-import { requireRole } from '../../middleware/requireRole.js';
+import express from "express";
+import { notifyWaitlistController } from "./waitlist.controller.js";
 
-const router = Router();
+const router = express.Router();
 
-/** POST /api/v1/waitlist — public, no auth */
-router.post('/', joinWaitlistController);
-
-/** GET /api/v1/waitlist — admin only */
-router.get('/', authenticate, requireRole('admin'), getPilotWaitlistController);
+router.post("/notify", notifyWaitlistController);
 
 export default router;

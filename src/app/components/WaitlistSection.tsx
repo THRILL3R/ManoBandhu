@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-type Status = "idle" | "loading" | "success" | "error" | "duplicate";
+type Status = "idle" | "loading" | "success" | "error";
 
 interface FormState {
   full_name: string;
@@ -25,12 +25,16 @@ function validate(form: FormState): FieldErrors {
     errs.full_name = "Full name must be at least 2 characters.";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
     errs.email = "Please enter a valid email address.";
-  if (!/^(\+91|91)?[6-9]\d{9}$/.test(form.mobile.replace(/\s/g, "")))
-    errs.mobile = "Enter a valid 10-digit Indian mobile number.";
+
+  // Input is limited to 10 digits in the UI, and +91 is added by the system.
+  // We validate exactly 10 digits starting with 6-9.
+  const cleanMobile = form.mobile.replace(/\D/g, "");
+  if (!/^[6-9]\d{9}$/.test(cleanMobile))
+    errs.mobile = "Enter a valid 10-digit mobile number.";
+
   return errs;
 }
 
-const API_BASE = import.meta.env.VITE_API_URL ?? "http://localhost:5000";
 
 // ─── Shared styles ────────────────────────────────────────────────────────────
 const inputStyle: React.CSSProperties = {
@@ -87,7 +91,10 @@ export function WaitlistSection() {
   const set = (field: keyof FormState) =>
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
-      // Clear field error on change
+      // Clear errors on change
+      if (status !== "idle" && status !== "loading" && status !== "success") {
+        setStatus("idle");
+      }
       if (fieldErrors[field as keyof FieldErrors])
         setFieldErrors((prev) => ({ ...prev, [field]: undefined }));
     };
@@ -101,66 +108,40 @@ export function WaitlistSection() {
     setErrorMsg("");
 
     try {
-      const payload = { ...form, mobile: `+91${form.mobile.replace(/\s/g, "")}` };
-      
-      // 1. Submit to Google Sheets (Reliable secondary storage)
-      const SHEETS_URL = import.meta.env.VITE_SHEETS_URL;
-      let sheetCaptured = false;
-      if (SHEETS_URL) {
-        try {
-          // Note: no-cors doesn't allow reading response, but typically works for Apps Script
-          await fetch(SHEETS_URL, {
-            method: "POST",
-            mode: "no-cors", 
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...form, sheet: "Waitlist" }),
-          });
-          sheetCaptured = true;
-        } catch (e) {
-          console.error("Google Sheets captured failed:", e);
-        }
-      }
+      const payload = { ...form, mobile: `+91${form.mobile.replace(/\s/g, "")}`, sheet: "Waitlist" };
 
-      // 2. Submit to Backend API
-      try {
-        const res = await fetch(`${API_BASE}/api/v1/waitlist`, {
+      // 1. Submit to Google Sheets (Data storage)
+      const SHEETS_URL = import.meta.env.VITE_SHEETS_URL;
+      if (SHEETS_URL) {
+        await fetch(SHEETS_URL, {
           method: "POST",
+          mode: "no-cors",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
+      }
 
-        if (res.status === 200) {
-          setStatus("duplicate");
-          return;
-        }
-
-        if (res.status === 201 || res.ok) {
-          setStatus("success");
-          return;
-        }
-
-        // If backend returned an error (e.g. 500), but we captured in sheets, show success
-        if (sheetCaptured) {
-          setStatus("success");
-        } else {
-          const json = await res.json();
-          setStatus("error");
-          setErrorMsg(json.error?.message ?? "Something went wrong. Please try again.");
-        }
-      } catch (backendErr) {
-        console.error("Backend submission failed:", backendErr);
-        // Fallback: If backend is down but sheet worked, show success
-        if (sheetCaptured) {
-          setStatus("success");
-        } else {
-          setStatus("error");
-          setErrorMsg("Service temporarily unavailable. Please try again later.");
+      // 2. Send Automated Email via Backend
+      const API_URL = import.meta.env.VITE_API_URL;
+      if (API_URL) {
+        try {
+          await fetch(`${API_URL}/api/v1/waitlist/notify`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: form.email, name: form.full_name }),
+          });
+          console.log("Confirmation email sent successfully via Backend");
+        } catch (mailErr) {
+          console.error("Email sending failed:", mailErr);
         }
       }
+
+      
+      setStatus("success");
     } catch (err) {
-      console.error("Critical submission error:", err);
+      console.error("Submission error:", err);
       setStatus("error");
-      setErrorMsg("Something went wrong. Please try again.");
+      setErrorMsg("Failed to join waitlist. Please check your connection and try again.");
     }
   };
 
@@ -310,12 +291,6 @@ export function WaitlistSection() {
                       onBlur={(e) => (e.target.style.borderColor = "#D1E8DF")} />
                   </div>
 
-                  {/* Duplicate message */}
-                  {status === "duplicate" && (
-                    <div style={{ marginBottom: 16, padding: "12px 20px", background: "#FFF7ED", border: "1.5px solid #FED7AA", borderRadius: 999, textAlign: "center", color: "#92400e", fontFamily: "'Nunito', sans-serif", fontSize: "0.9rem", fontWeight: 600 }}>
-                      🌿 You're already on our waitlist! We'll be in touch soon.
-                    </div>
-                  )}
 
                   {/* Error message */}
                   {status === "error" && (
@@ -348,8 +323,8 @@ export function WaitlistSection() {
                       boxShadow: "0 8px 24px rgba(42,157,143,0.30)",
                       transition: "opacity 0.2s, background 0.2s",
                     }}
-                    onMouseEnter={(e) => { if (status !== "loading") (e.currentTarget as HTMLButtonElement).style.background = "#1A7A6E"; }}
-                    onMouseLeave={(e) => { if (status !== "loading") (e.currentTarget as HTMLButtonElement).style.background = "linear-gradient(135deg, #1A7A6E, #2A9D8F)"; }}
+                    onMouseEnter={(e) => { if (status === "idle" || status === "error") (e.currentTarget as HTMLButtonElement).style.background = "#1A7A6E"; }}
+                    onMouseLeave={(e) => { if (status === "idle" || status === "error") (e.currentTarget as HTMLButtonElement).style.background = "linear-gradient(135deg, #1A7A6E, #2A9D8F)"; }}
                   >
                     {status === "loading" && <Spinner />}
                     {status === "loading" ? "Submitting..." : "Join the Waitlist"}
