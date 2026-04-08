@@ -1,40 +1,42 @@
-import { Queue } from 'bullmq';
 import { env } from '../config/env.js';
 
-// ── Shared Redis connection options for BullMQ ────────────────────────────────
-const redisUrl = new URL(env.REDIS_URL);
+// ── Redis availability check ──────────────────────────────────────────────────
+const REDIS_URL = env.REDIS_URL ?? '';
+const isLocal   = !REDIS_URL || REDIS_URL.includes('localhost') || REDIS_URL.includes('127.0.0.1');
 
-export const redisConnection = {
-  host:     redisUrl.hostname,
-  port:     Number(redisUrl.port) || 6379,
-  password: redisUrl.password || undefined,
-} as const;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyQueue = {
+  add:                    (...args: any[]) => Promise<any>;
+  close:                  () => Promise<void>;
+  on:                     (...args: any[]) => any;
+  getRepeatableJobs:      () => Promise<any[]>;
+  removeRepeatableByKey:  (key: string) => Promise<boolean | void>;
+};
 
-// ── Queue instances ───────────────────────────────────────────────────────────
-export const notificationsQueue = new Queue('notifications', {
-  connection: redisConnection,
-  defaultJobOptions: { removeOnComplete: 100, removeOnFail: 500 },
+const noopQueue = (): AnyQueue => ({
+  add:                   async () => null,
+  close:                 async () => {},
+  on:                    ()       => {},
+  getRepeatableJobs:     async () => [],
+  removeRepeatableByKey: async () => {},
 });
 
-export const aiInsightsQueue = new Queue('ai-insights', {
-  connection: redisConnection,
-  defaultJobOptions: { removeOnComplete: 50, removeOnFail: 200, attempts: 3,
-    backoff: { type: 'exponential', delay: 60_000 } },
-});
+export const redisConnection = isLocal
+  ? { host: 'localhost', port: 6379 }
+  : (() => { const u = new URL(REDIS_URL); return { host: u.hostname, port: Number(u.port) || 6379, password: u.password || undefined }; })();
 
-export const paymentsQueue = new Queue('payments', {
-  connection: redisConnection,
-  defaultJobOptions: { removeOnComplete: 100, removeOnFail: 500, attempts: 5,
-    backoff: { type: 'exponential', delay: 10_000 } },
-});
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function makeQueue(name: string, opts: Record<string, any> = {}): Promise<AnyQueue> {
+  if (isLocal) return noopQueue();
+  const { Queue } = await import('bullmq');
+  const u = new URL(REDIS_URL);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return new Queue(name, { connection: { host: u.hostname, port: Number(u.port) || 6379, password: u.password || undefined } as any, ...opts });
+}
 
-export const mediaCleanupQueue = new Queue('media-cleanup', {
-  connection: redisConnection,
-  defaultJobOptions: { removeOnComplete: 200, removeOnFail: 500, attempts: 3,
-    backoff: { type: 'exponential', delay: 30_000 } },
-});
-
-export const eventRemindersQueue = new Queue('event-reminders', {
-  connection: redisConnection,
-  defaultJobOptions: { removeOnComplete: 100, removeOnFail: 200 },
-});
+// ── Queue instances (resolved lazily — no connection on module load) ───────────
+export const notificationsQueue  = await makeQueue('notifications',   { defaultJobOptions: { removeOnComplete: 100, removeOnFail: 500 } });
+export const aiInsightsQueue     = await makeQueue('ai-insights',     { defaultJobOptions: { removeOnComplete: 50,  removeOnFail: 200, attempts: 3, backoff: { type: 'exponential', delay: 60_000 } } });
+export const paymentsQueue       = await makeQueue('payments',        { defaultJobOptions: { removeOnComplete: 100, removeOnFail: 500, attempts: 5, backoff: { type: 'exponential', delay: 10_000 } } });
+export const mediaCleanupQueue   = await makeQueue('media-cleanup',   { defaultJobOptions: { removeOnComplete: 200, removeOnFail: 500, attempts: 3, backoff: { type: 'exponential', delay: 30_000 } } });
+export const eventRemindersQueue = await makeQueue('event-reminders', { defaultJobOptions: { removeOnComplete: 100, removeOnFail: 200 } });

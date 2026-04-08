@@ -16,15 +16,19 @@ const s3 = new S3Client({
   },
 });
 
-// ── BullMQ queue for media cleanup ────────────────────────────────────────────
-const redisUrl = new URL(env.REDIS_URL);
-const mediaCleanupQueue = new Queue('media-cleanup', {
-  connection: {
-    host: redisUrl.hostname,
-    port: Number(redisUrl.port) || 6379,
-    password: redisUrl.password || undefined,
-  } as any, // eslint-disable-line @typescript-eslint/no-explicit-any
-});
+// ── BullMQ queue for media cleanup (no-op when Redis not available) ───────────
+const REDIS_URL = env.REDIS_URL ?? '';
+const isLocal   = !REDIS_URL || REDIS_URL.includes('localhost') || REDIS_URL.includes('127.0.0.1');
+
+const mediaCleanupQueue = isLocal
+  ? { add: async () => null, close: async () => {} }
+  : (() => {
+      const redisUrl = new URL(REDIS_URL);
+      const { Queue } = require('bullmq') as typeof import('bullmq');
+      return new Queue('media-cleanup', {
+        connection: { host: redisUrl.hostname, port: Number(redisUrl.port) || 6379, password: redisUrl.password || undefined } as never,
+      });
+    })();
 
 // ── AES-256-GCM encryption helpers ────────────────────────────────────────────
 // Per-user key derived via HKDF(JWT_ACCESS_SECRET + userId) — 32 bytes for AES-256

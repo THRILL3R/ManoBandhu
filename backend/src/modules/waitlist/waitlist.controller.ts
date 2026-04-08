@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { WaitlistSchema } from './waitlist.schemas.js';
 import { joinWaitlist, getPilotWaitlist } from './waitlist.service.js';
 import { sendSuccess, sendError } from '../../utils/response.js';
+import { sendConfirmationEmail } from '../../utils/emailService.js';
 
 export async function joinWaitlistController(req: Request, res: Response, next: NextFunction): Promise<void> {
   const parsed = WaitlistSchema.safeParse(req.body);
@@ -22,6 +23,11 @@ export async function joinWaitlistController(req: Request, res: Response, next: 
       return;
     }
 
+    // Send confirmation email automatically on new registration
+    sendConfirmationEmail(parsed.data.email, parsed.data.full_name).catch((err) => {
+      console.error('[waitlist] Failed to send confirmation email:', err);
+    });
+
     sendSuccess(
       res,
       { 
@@ -35,6 +41,7 @@ export async function joinWaitlistController(req: Request, res: Response, next: 
   }
 }
 
+
 export async function getPilotWaitlistController(req: Request, res: Response): Promise<void> {
   const page  = Math.max(1, Number(req.query['page'])  || 1);
   const limit = Math.min(100, Number(req.query['limit']) || 50);
@@ -42,7 +49,7 @@ export async function getPilotWaitlistController(req: Request, res: Response): P
   sendSuccess(res, result);
 }
 
-import { sendConfirmationEmail } from '../../utils/emailService.js';
+
 
 export const notifyWaitlistController = async (req: Request, res: Response) => {
   try {

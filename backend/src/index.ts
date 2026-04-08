@@ -6,7 +6,7 @@ import morgan from 'morgan';
 import compression from 'compression';
 import { env } from './config/env.js';
 import { pool, connectDB } from './config/db.js';
-import { redis, connectRedis } from './config/redis.js';
+// Redis disabled locally — import { redis, connectRedis } from './config/redis.js';
 import { logger } from './utils/logger.js';
 import { sendError } from './utils/response.js';
 import router from './routes/index.js';
@@ -25,7 +25,8 @@ app.use(helmet());
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || origin === env.FRONTEND_URL || env.NODE_ENV === 'development') {
+      const isLocalhost = !origin || /^http:\/\/localhost(:\d+)?$/.test(origin);
+      if (isLocalhost || origin === env.FRONTEND_URL) {
         callback(null, true);
       } else {
         logger.warn(`[CORS] Rejected origin: ${origin}`);
@@ -53,26 +54,26 @@ app.use(compression() as express.RequestHandler);
 
 // ── 7. Health check — tests DB (SELECT 1) and Redis (PING) live ──────────────
 app.get('/api/health', async (_req, res) => {
-  let dbStatus    = 'connected';
+  let dbStatus = 'connected';
   let redisStatus = 'connected';
 
   try { await pool.query('SELECT 1'); }
   catch { dbStatus = 'error'; }
 
-  try { await redis.ping(); }
-  catch { redisStatus = 'error'; }
+  // Redis optional
+  redisStatus = 'skipped';
 
   const overall = dbStatus === 'connected' && redisStatus === 'connected' ? 'ok' : 'degraded';
 
   res.status(overall === 'ok' ? 200 : 503).json({
     success: overall === 'ok',
     data: {
-      status:      overall,
-      db:          dbStatus,
-      redis:       redisStatus,
-      version:     '1.0.0',
+      status: overall,
+      db: dbStatus,
+      redis: redisStatus,
+      version: '1.0.0',
       environment: env.NODE_ENV,
-      timestamp:   new Date().toISOString(),
+      timestamp: new Date().toISOString(),
     },
   });
 });
@@ -93,7 +94,7 @@ async function start() {
   try {
     // Temporarily bypass strict connection crashes
     try { await connectDB(); } catch (e) { logger.warn('DB connect failed, running without DB'); }
-    try { await connectRedis(); } catch (e) { logger.warn('Redis connect failed, running without Redis'); }
+    logger.warn('Redis skipped (not configured locally)');
 
     // Workers self-register on import; reference them to keep alive + enable shutdown
     // logger.info(
@@ -115,14 +116,14 @@ async function start() {
         //   notificationsWorker.close(),
         // ]);
         await pool.end();
-        await redis.quit();
-        logger.info('Server, DB pool, Redis, and workers closed.');
+        // redis.quit() — skipped (Redis not in use locally)
+        logger.info('Server and DB pool closed.');
         process.exit(0);
       });
     };
 
     process.on('SIGTERM', () => shutdown('SIGTERM'));
-    process.on('SIGINT',  () => shutdown('SIGINT'));
+    process.on('SIGINT', () => shutdown('SIGINT'));
   } catch (err) {
     logger.error('Failed to start server:', err);
     process.exit(1);

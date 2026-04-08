@@ -136,7 +136,7 @@ export function WaitlistSection() {
         }
       }
 
-      
+
       setStatus("success");
     } catch (err) {
       console.error("Submission error:", err);

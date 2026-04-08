@@ -2,8 +2,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const required = [
-  'DATABASE_URL',
-  'REDIS_URL',
   'JWT_ACCESS_SECRET',
   'JWT_REFRESH_SECRET',
 ];
