@@ -112,23 +112,17 @@ export function NewNavbar() {
           <div style={{ flex: 1 }} />
 
           {/* CTA — right */}
-          <Link
-            to="/#waitlist"
+          <a
+            href="http://localhost:3000/login"
             className="ripple-btn"
             style={{
               background: "#3D9990",
               transition: "background 0.3s ease",
             }}
-            onClick={(e) => {
-              if (location.pathname === '/') {
-                e.preventDefault();
-                document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }}
           >
             Join The Study
             <span className="animation" />
-          </Link>
+          </a>
         </div>
 
         {/* ── Mobile header ── */}
@@ -201,21 +195,14 @@ export function NewNavbar() {
               {link.name}
             </Link>
           ))}
-          <Link
-            to="/pilot-study"
-            onClick={(e) => {
-              setMobileOpen(false);
-              if (location.pathname === '/') {
-                e.preventDefault();
-                document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }}
+          <a
+            href="http://localhost:3000/login"
             className="ripple-btn"
             style={{ margin: "12px", justifyContent: "center" }}
           >
             Join The Study
             <span className="animation" />
-          </Link>
+          </a>
         </div>
       )}
     </>
