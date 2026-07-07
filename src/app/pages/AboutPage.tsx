@@ -25,7 +25,7 @@ export function AboutPage() {
     },
     {
       name: "Kkomal Narsingani",
-      role: "Founding Member, Advisor & Wellbeing Consultant",
+      role: "Mentor - Mental Health",
       image: "/team/kkomal.png",
       bio: [
         "Kkomal Narsingani is a dedicated Therapist, Facilitator, and Wellness Coach with over 20 years of experience, transitioning from HRM to Mental Health in 2017. With a PGD in Counselling Psychology from TISS, she is also a Reiki Master and Clinical Musician, with a deep understanding of Buddhist Psychology.",
@@ -172,9 +172,7 @@ export function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row ${
-                  index % 2 === 0 ? '' : 'md:flex-row-reverse'
-                }`}
+                className="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row"
               >
                 <div className="md:w-1/3 flex-shrink-0">
                   <img
