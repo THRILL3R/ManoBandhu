@@ -57,15 +57,9 @@ export function Footer() {
               <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
               <li><Link to="/blogs"    className="hover:text-white transition-colors">Blog</Link></li>
               <li>
-                <Link 
-                  to="/#waitlist" 
+                <Link
+                  to="/pilot-study"
                   className="hover:text-white transition-colors"
-                  onClick={(e) => {
-                    if (window.location.pathname === '/') {
-                      e.preventDefault();
-                      document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }}
                 >
                   Join the Study
                 </Link>
