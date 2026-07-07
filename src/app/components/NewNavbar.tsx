@@ -113,7 +113,7 @@ export function NewNavbar() {
 
           {/* CTA — right */}
           <a
-            href="https://app.manobandhu.com/login"
+            href="https://manobandhu.com/login"
             className="ripple-btn"
             style={{
               background: "#3D9990",
@@ -196,7 +196,7 @@ export function NewNavbar() {
             </Link>
           ))}
           <a
-            href="https://app.manobandhu.com/login"
+            href="https://manobandhu.com/login"
             className="ripple-btn"
             style={{ margin: "12px", justifyContent: "center" }}
           >
