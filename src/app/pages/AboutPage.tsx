@@ -6,7 +6,7 @@ export function AboutPage() {
     {
       name: "Samruddhi Vadgave",
       role: "Co-Founder & CEO",
-      image: "👩‍💼",
+      image: "/team/samruddhi.png",
       bio: [
         "With a background in management and analytics, Samruddhi's journey with ManoBandhu began during her MBA when she faced personal challenges and sought therapy. Those experiences — navigating emotional pain, discovering the gaps in existing mental health solutions, and understanding the power of daily emotional habits — sparked the idea for ManoBandhu.",
         "ManoBandhu was incorporated during her MBA tenure, born from a deep belief that emotional well-being should be accessible, structured, and built into daily life — not reserved for moments of crisis."
@@ -16,7 +16,7 @@ export function AboutPage() {
     {
       name: "Dr. Pravin Vadgave",
       role: "Co-Founder",
-      image: "👨‍⚕️",
+      image: "/team/pravin.png",
       bio: [
         "An MD Homeopath with over 40 years of clinical practice, Dr. Pravin brings a deep understanding of holistic healing, patient care, and the mind-body connection to ManoBandhu.",
         "His decades of experience working with patients across diverse backgrounds have shaped ManoBandhu's compassionate, patient-centered approach. Together with Samruddhi, he envisions a world where emotional care is as natural and accessible as physical care."
@@ -26,7 +26,7 @@ export function AboutPage() {
     {
       name: "Kkomal Narsingani",
       role: "Founding Member, Advisor & Wellbeing Consultant",
-      image: "👩‍🏫",
+      image: "/team/kkomal.png",
       bio: [
         "Kkomal Narsingani is a dedicated Therapist, Facilitator, and Wellness Coach with over 20 years of experience, transitioning from HRM to Mental Health in 2017. With a PGD in Counselling Psychology from TISS, she is also a Reiki Master and Clinical Musician, with a deep understanding of Buddhist Psychology.",
         "Kkomal’s approach is holistic, emphasizing that there is no one-size-fits-all solution to achieving happiness, health, productivity, or creativity. She is committed to relentlessly exploring human nature to help others live better lives."
@@ -172,11 +172,18 @@ export function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`bg-white rounded-2xl shadow-xl overflow-hidden ${
+                className={`bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row ${
                   index % 2 === 0 ? '' : 'md:flex-row-reverse'
                 }`}
               >
-                <div className="p-8 md:p-12">
+                <div className="md:w-1/3 flex-shrink-0">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-64 md:h-full object-cover object-top"
+                  />
+                </div>
+                <div className="p-8 md:p-12 md:w-2/3">
                   <div className="mb-6 pb-6 border-b border-gray-100">
                     <h3 className="text-2xl font-bold mb-2 text-teal-800">{member.name}</h3>
                     <p className="text-lg font-medium bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
