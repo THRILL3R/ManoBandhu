@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Link } from 'react-router'
 import styles from './Hero.module.css'
 import GradualBlur from './GradualBlur'
 
@@ -52,16 +53,12 @@ export function Hero() {
               ManoBandhu is a structured emotional wellness platform that helps you build daily emotional habits — with guided rituals, a regulation module, and warm reflective insights delivered every week.
             </p>
             <div className={styles.actions}>
-              <a
-                href="#waitlist"
+              <Link
+                to="/pilot-study"
                 className={styles.sliceBtn}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
               >
                 <span className={styles.sliceText}>Join the Study →</span>
-              </a>
+              </Link>
 
             </div>
           </div>
