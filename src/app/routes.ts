@@ -21,6 +21,7 @@ export const router = createBrowserRouter([
       { path: "blogs", Component: BlogsPage },
       { path: "blogs/:id", Component: BlogPostPage },
       { path: "contact", Component: ContactPage },
+      { path: "contact/study", Component: PilotStudyPage },
       { path: "pilot-study", Component: PilotStudyPage },
       { path: "privacy-policy", Component: PrivacyPolicy },
       { path: "terms-of-use", Component: TermsOfUse },

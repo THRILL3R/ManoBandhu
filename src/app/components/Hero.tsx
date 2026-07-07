@@ -54,7 +54,7 @@ export function Hero() {
             </p>
             <div className={styles.actions}>
               <Link
-                to="/pilot-study"
+                to="/contact/study"
                 className={styles.sliceBtn}
               >
                 <span className={styles.sliceText}>Join the Study →</span>

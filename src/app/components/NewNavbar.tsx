@@ -120,7 +120,7 @@ export function NewNavbar() {
               transition: "background 0.3s ease",
             }}
           >
-            Join The Study
+            Login
             <span className="animation" />
           </a>
         </div>
@@ -200,7 +200,7 @@ export function NewNavbar() {
             className="ripple-btn"
             style={{ margin: "12px", justifyContent: "center" }}
           >
-            Join The Study
+            Login
             <span className="animation" />
           </a>
         </div>
