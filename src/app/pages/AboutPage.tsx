@@ -174,7 +174,7 @@ export function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="space-y-16">
+          <div className="space-y-8 max-w-3xl mx-auto">
             {team.map((member, index) => (
               <motion.div
                 key={member.name}
@@ -188,19 +188,19 @@ export function AboutPage() {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-64 md:h-full object-cover object-top"
+                    className="w-full h-40 md:h-full object-cover object-top"
                   />
                 </div>
-                <div className="p-8 md:p-12 md:w-2/3">
-                  <div className="mb-6 pb-6 border-b border-gray-100">
-                    <h3 className="text-2xl font-bold mb-2 text-teal-800">{member.name}</h3>
-                    <p className="text-lg font-medium bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
+                <div className="p-5 md:p-6 md:w-2/3">
+                  <div className="mb-3 pb-3 border-b border-gray-100">
+                    <h3 className="text-lg font-bold mb-1 text-teal-800">{member.name}</h3>
+                    <p className="text-sm font-medium bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
                       {member.role}
                     </p>
                   </div>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {member.bio.map((paragraph, pIndex) => (
-                      <p key={pIndex} className="text-muted-foreground leading-relaxed text-lg">
+                      <p key={pIndex} className="text-muted-foreground leading-relaxed text-sm">
                         {paragraph}
                       </p>
                     ))}
