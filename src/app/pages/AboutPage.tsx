@@ -188,7 +188,7 @@ export function AboutPage() {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-56 md:h-full object-cover object-center"
+                    className="w-full h-auto md:h-full object-cover"
                   />
                 </div>
                 <div className="p-5 md:p-6 md:w-2/3">
