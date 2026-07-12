@@ -13,7 +13,7 @@ const audiences = [
         emoji: "💼",
         title: "Working Professionals",
         description:
-            "Busy days, full schedules, quiet inner lives. ManoBandhu helps you stay in touch with yourself — gently, without adding pressure — so you can show up with more clarity and kindness.",
+            "Busy days, full schedules, quiet inner lives. ManoBandhu helps you stay in touch with yourself, gently and without adding pressure, so you can show up with more clarity and kindness.",
         tags: ["Self-awareness", "Clarity", "Balance", "Gentle routines"],
         color: "#0891b2",
         bg: "#ecfeff",
@@ -84,7 +84,7 @@ export function AudienceSection() {
                             lineHeight: 1.8,
                         }}
                     >
-                        ManoBandhu is for the curious, the reflective, the quietly overwhelmed — anyone who wants to understand themselves more, express themselves freely, and be a little gentler with themselves and those around them.
+                        ManoBandhu is for the curious, the reflective, the quietly overwhelmed: anyone who wants to understand themselves more, express themselves freely, and be a little gentler with themselves and those around them.
                     </p>
                 </div>
 
@@ -176,7 +176,7 @@ export function AudienceSection() {
                             lineHeight: 1.8,
                         }}
                     >
-                        Between jobs, between phases, figuring things out. ManoBandhu meets you exactly where you are — no labels, no pressure, just a quiet space to understand yourself better every day.
+                        Between jobs, between phases, figuring things out. ManoBandhu meets you exactly where you are, no labels, no pressure, just a quiet space to understand yourself better every day.
                     </p>
                 </div>
                 </div>
@@ -214,7 +214,7 @@ export function AudienceSection() {
                                 lineHeight: 1.7,
                             }}
                         >
-                            ManoBandhu is a daily practice — like stretching, like breathing, like writing in a diary. It's a space to understand yourself, express what you feel, and grow gentler towards yourself and the people in your life. No expertise required. Just a quiet willingness to look inward.
+                            ManoBandhu is a daily practice, like stretching, like breathing, like writing in a diary. It's a space to understand yourself, express what you feel, and grow gentler towards yourself and the people in your life. No expertise required. Just a quiet willingness to look inward.
                         </p>
                     </div>
                 </div>
@@ -238,7 +238,7 @@ export function AudienceSection() {
                                 marginBottom: "0.5rem",
                             }}
                         >
-                            Not just a platform — a living, breathing community
+                            Not just a platform: a living, breathing community
                         </h3>
                         <p
                             style={{
@@ -248,7 +248,7 @@ export function AudienceSection() {
                                 lineHeight: 1.7,
                             }}
                         >
-                            ManoBandhu exists online <em>and</em> offline. We actively encourage you to show up in the real world too — through wellness events, monthly community meetups, and group sessions. Because connection and presence are part of the practice.
+                            ManoBandhu exists online <em>and</em> offline. We actively encourage you to show up in the real world too, through wellness events, monthly community meetups, and group sessions. Because connection and presence are part of the practice.
                         </p>
                     </div>
                     </div>

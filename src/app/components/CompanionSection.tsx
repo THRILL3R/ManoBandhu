@@ -131,7 +131,7 @@ export function CompanionSection() {
                                 marginBottom: "1rem",
                             }}
                         >
-                            From the moment you arrive on your island, a dog joins you. Your companion. Always there, never judging — tail wagging as you open your diary, padding softly beside you at the lighthouse, nudging you gently toward the treasure box each evening.
+                            From the moment you arrive on your island, a dog joins you. Your companion. Always there, never judging: tail wagging as you open your diary, padding softly beside you at the lighthouse, nudging you gently toward the treasure box each evening.
                         </p>
                         <p
                             style={{
@@ -142,7 +142,7 @@ export function CompanionSection() {
                                 marginBottom: "2rem",
                             }}
                         >
-                            You get to choose your companion's name — something that feels just right. Something that, when you see it pop up on screen, makes you feel a little less alone.
+                            You get to choose your companion's name, something that feels just right. Something that, when you see it pop up on screen, makes you feel a little less alone.
                         </p>
 
                     </div>
@@ -247,7 +247,7 @@ export function CompanionSection() {
                                 fontStyle: "italic",
                             }}
                         >
-                            🐾 Say hello to <strong>{finalName}</strong> — your companion on this island. They'll be waiting for you every single day.
+                            🐾 Say hello to <strong>{finalName}</strong>, your companion on this island. They'll be waiting for you every single day.
                         </p>
                     </div>
                 )}

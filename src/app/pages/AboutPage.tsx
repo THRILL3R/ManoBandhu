@@ -8,8 +8,8 @@ export function AboutPage() {
       role: "Co-Founder & CEO",
       image: "/team/samruddhi.png",
       bio: [
-        "With a background in management and analytics, Samruddhi's journey with ManoBandhu began during her MBA when she faced personal challenges and sought therapy. Those experiences — navigating emotional pain, discovering the gaps in existing mental health solutions, and understanding the power of daily emotional habits — sparked the idea for ManoBandhu.",
-        "ManoBandhu was incorporated during her MBA tenure, born from a deep belief that emotional well-being should be accessible, structured, and built into daily life — not reserved for moments of crisis."
+        "With a background in management and analytics, Samruddhi's journey with ManoBandhu began during her MBA when she faced personal challenges and sought therapy. Those experiences, navigating emotional pain, discovering the gaps in existing mental health solutions, and understanding the power of daily emotional habits, sparked the idea for ManoBandhu.",
+        "ManoBandhu was incorporated during her MBA tenure, born from a deep belief that emotional well-being should be accessible, structured, and built into daily life, not reserved for moments of crisis."
       ],
       gradient: "from-teal-400 to-teal-600"
     },
@@ -74,15 +74,15 @@ export function AboutPage() {
           >
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
               <p>
-                ManoBandhu was born from a simple but profound belief: <strong>emotional well-being is not built in moments of crisis. It is built daily</strong> — through awareness of self, belief in growth, and the consistency to show up every day.
+                ManoBandhu was born from a simple but profound belief: <strong>emotional well-being is not built in moments of crisis. It is built daily</strong>, through awareness of self, belief in growth, and the consistency to show up every day.
               </p>
               
               <p>
-                India has <strong>197 million people who need mental health support —(Global Burden of Disease Study, The Lancet, 2017)</strong> but existing solutions focus on therapy access or passive content. ManoBandhu fills the gap with a <strong>habit-based, reflective, and structured emotional infrastructure</strong>.
+                India has <strong>197 million people who need mental health support (Global Burden of Disease Study, The Lancet, 2017)</strong> but existing solutions focus on therapy access or passive content. ManoBandhu fills the gap with a <strong>habit-based, reflective, and structured emotional infrastructure</strong>.
               </p>
               
               <p>
-                Most importantly, we are not just a digital product. We are a <strong>bridge between the online and offline world</strong> — using the app as a daily anchor to help users build emotional habits that then encourage them to step into real life.
+                Most importantly, we are not just a digital product. We are a <strong>bridge between the online and offline world</strong>, using the app as a daily anchor to help users build emotional habits that then encourage them to step into real life.
               </p>
             </div>
           </motion.div>
@@ -101,7 +101,7 @@ export function AboutPage() {
           >
             <h2 className="mb-4 text-gray-900">Built on Four Core Pillars</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Everything in ManoBandhu flows from these principles — they shape every feature, every interaction, every moment.
+              Everything in ManoBandhu flows from these principles: they shape every feature, every interaction, every moment.
             </p>
           </motion.div>
 
@@ -116,7 +116,7 @@ export function AboutPage() {
               {
                 icon: "🫀",
                 title: "Nervous System Regulation",
-                description: "Structured tools to calm your body and mind in moments of stress, overwhelm, or emotional flooding — wherever you are.",
+                description: "Structured tools to calm your body and mind in moments of stress, overwhelm, or emotional flooding, wherever you are.",
                 iconBg: "#fee2e2",
               },
               {
@@ -128,7 +128,7 @@ export function AboutPage() {
               {
                 icon: "👥",
                 title: "Human Connection",
-                description: "Digital tools that bring you closer to the physical world — events, community circles, nature expeditions, and real people.",
+                description: "Digital tools that bring you closer to the physical world: events, community circles, nature expeditions, and real people.",
                 iconBg: "#ede9fe",
               },
             ].map((pillar, index) => (
@@ -239,7 +239,7 @@ export function AboutPage() {
                 Born from Personal Experience
               </h3>
               <p className="text-lg text-teal-900/80 leading-relaxed">
-                ManoBandhu began during an MBA journey, sparked by personal challenges and the transformative power of therapy. But something was missing — emotional wellbeing shouldn't wait for a crisis. It should be woven into daily life.
+                ManoBandhu began during an MBA journey, sparked by personal challenges and the transformative power of therapy. But something was missing: emotional wellbeing shouldn't wait for a crisis. It should be woven into daily life.
               </p>
             </motion.div>
 
@@ -280,7 +280,7 @@ export function AboutPage() {
               </div>
               <h2 className="mb-6 text-teal-700">Our Mission</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                To be the world's most trusted preventive emotional infrastructure — nurturing more aware, connected, and fully engaged human beings.
+                To be the world's most trusted preventive emotional infrastructure, nurturing more aware, connected, and fully engaged human beings.
               </p>
             </motion.div>
 
@@ -343,7 +343,7 @@ export function AboutPage() {
               {
                 icon: Eye,
                 title: "Accessibility for All",
-                description: "Mental wellbeing shouldn't be a luxury — it's a fundamental right",
+                description: "Mental wellbeing shouldn't be a luxury, it's a fundamental right",
                 color: "from-emerald-400 to-emerald-600"
               }
             ].map((value, index) => (

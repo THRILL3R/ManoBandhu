@@ -252,7 +252,7 @@ function Section2({ data, update }: { data: FormData; update: (patch: Partial<Fo
   return (
     <div className="space-y-8">
       <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 text-sm text-amber-800 leading-relaxed">
-        The following questions help us ensure this study is appropriate for you. This is not a clinical assessment — we simply want to make sure you receive the right kind of support. Please answer honestly. Your responses are confidential.
+        The following questions help us ensure this study is appropriate for you. This is not a clinical assessment, we simply want to make sure you receive the right kind of support. Please answer honestly. Your responses are confidential.
       </div>
 
       <div>
@@ -267,7 +267,7 @@ function Section2({ data, update }: { data: FormData; update: (patch: Partial<Fo
       </div>
 
       <div>
-        <FieldLabel required>(If Yes) Is this treatment ongoing and active — meaning you are currently attending regular sessions or taking prescribed psychiatric medication?</FieldLabel>
+        <FieldLabel required>(If Yes) Is this treatment ongoing and active, meaning you are currently attending regular sessions or taking prescribed psychiatric medication?</FieldLabel>
         <RadioGroup
           name="treatmentOngoing"
           options={["Yes", "No"]}
@@ -406,7 +406,7 @@ function Section4({ data, update }: { data: FormData; update: (patch: Partial<Fo
 
       <div>
         <FieldLabel required>
-          Are you willing to share anonymised in-app usage data — including which destinations you visited, how frequently, and your emotional check-in ratings — with the research team for the purpose of this study?
+          Are you willing to share anonymised in-app usage data, including which destinations you visited, how frequently, and your emotional check-in ratings, with the research team for the purpose of this study?
         </FieldLabel>
         <p className="text-xs text-muted-foreground mb-2">Your data will never be shared with anyone outside the research team and will be stored securely.</p>
         <RadioGroup
@@ -420,7 +420,7 @@ function Section4({ data, update }: { data: FormData; update: (patch: Partial<Fo
 
       {/* Payment Section */}
       <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-teal-200 rounded-2xl p-6 space-y-4">
-        <h4 className="text-teal-700 font-bold text-base">Participation Payment — ₹199</h4>
+        <h4 className="text-teal-700 font-bold text-base">Participation Payment: ₹199</h4>
         <p className="text-sm text-muted-foreground leading-relaxed">
           To confirm your enrolment in the ManoDweep Pilot Study, please make a one-time participation payment of <strong>₹199</strong> (India) / <strong>$10</strong> (International) using the QR code below.
         </p>
@@ -569,7 +569,7 @@ export function PilotStudyPage() {
             className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full mb-6 text-sm font-medium border border-white/20"
           >
             <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#A8F0EB' }} />
-            Pilot Study — Early Access Open
+            Pilot Study: Early Access Open
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

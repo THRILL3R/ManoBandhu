@@ -68,7 +68,7 @@ export function ContactSection() {
                     Your companion is waiting!
                   </h3>
                   <p style={{ color: "#1E3A5F", lineHeight: "1.7" }}>
-                    Join thousands of people who are ready to build a healthier relationship with their mind —
+                    Join thousands of people who are ready to build a healthier relationship with their mind,
                     one day, one habit, one island at a time.
                   </p>
                   <div className="mt-6 space-y-3">

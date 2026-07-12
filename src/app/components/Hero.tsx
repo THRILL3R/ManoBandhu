@@ -50,7 +50,7 @@ export function Hero() {
               <span>Explore the World </span> &nbsp;<span>Within Your Mind</span>
             </p>
             <p className={styles.desc}>
-              ManoBandhu is a structured emotional wellness platform that helps you build daily emotional habits — with guided rituals, a regulation module, and warm reflective insights delivered every week.
+              ManoBandhu is a structured emotional wellness platform that helps you build daily emotional habits, with guided rituals, a regulation module, and warm reflective insights delivered every week.
             </p>
             <div className={styles.actions}>
               <Link

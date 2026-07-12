@@ -77,7 +77,7 @@ export function ContactPage() {
             <h1 className="text-6xl md:text-7xl font-serif text-white mb-2 leading-tight tracking-tight">Get In Touch</h1>
             <p className="text-[17px] md:text-lg text-white/85 max-w-2xl mx-auto font-light">
               We'd love to hear from you. Whether you have questions, partnership ideas, 
-              or career interests — let's connect.
+              or career interests, let's connect.
             </p>
           </motion.div>
         </div>

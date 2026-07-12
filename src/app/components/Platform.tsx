@@ -26,7 +26,7 @@ const islandZones = [
     color: "#FFF7ED",
     border: "rgba(251,146,60,0.3)",
     tag: "#F97316",
-    desc: "Your daily emotional journal — reflect, record, and revisit your inner world",
+    desc: "Your daily emotional journal: reflect, record, and revisit your inner world",
   },
   {
     icon: "🎪",
@@ -50,7 +50,7 @@ const islandZones = [
     color: "#FDF4FF",
     border: "rgba(168,85,247,0.3)",
     tag: "#9333EA",
-    desc: "Emotion tracking through play — spin to discover and process your feelings",
+    desc: "Emotion tracking through play: spin to discover and process your feelings",
   },
   {
     icon: "🏥",
@@ -74,7 +74,7 @@ const features = [
   {
     icon: <Zap size={20} />,
     title: "Habit-Based Architecture",
-    desc: "Daily quests and streaks that build lasting emotional habits — not just crisis interventions",
+    desc: "Daily quests and streaks that build lasting emotional habits, not just crisis interventions",
     color: "#FFF7ED",
     accent: "#F97316",
   },
@@ -88,7 +88,7 @@ const features = [
   {
     icon: <Shield size={20} />,
     title: "Safe & Structured",
-    desc: "Clinically informed emotional infrastructure — guided by 40+ years of holistic health wisdom",
+    desc: "Clinically informed emotional infrastructure, guided by 40+ years of holistic health wisdom",
     color: "#F0FDF4",
     accent: "#16A34A",
   },
@@ -129,7 +129,7 @@ export function Platform() {
             </h2>
             <p className="max-w-2xl mx-auto" style={{ color: "#6B7280" }}>
               A gamified world where every zone serves your emotional growth. Explore, play, reflect, and
-              grow — guided by your loyal companion dog and backed by clinical expertise.
+              grow, guided by your loyal companion dog and backed by clinical expertise.
             </p>
           </div>
         </FadeIn>
@@ -202,9 +202,9 @@ export function Platform() {
               </h3>
               <p style={{ color: "#92400E", lineHeight: "1.7" }}>
                 A warm, playful companion dog will be with you every step of your journey through the island
-                universe. More than just a guide — it's your emotional anchor. When the world feels heavy,
+                universe. More than just a guide, it's your emotional anchor. When the world feels heavy,
                 your companion will be there to remind you: you are never alone. Every quest, every check-in,
-                every breakthrough — celebrated together.
+                every breakthrough, celebrated together.
               </p>
             </div>
           </div>

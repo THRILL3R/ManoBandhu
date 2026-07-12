@@ -75,8 +75,8 @@ export function ApproachSection() {
                             <div className="w-full space-y-4">
                                 {[
                                     { icon: "🎮", text: "Gamified ManoBandhu Platform with island universe" },
-                                    { icon: "🌲", text: "Nature Expeditions — find stillness and inner wisdom in the natural world" },
-                                    { icon: "📢", text: "Psychoeducation Campaigns — free awareness initiatives for underserved communities" }
+                                    { icon: "🌲", text: "Nature Expeditions: find stillness and inner wisdom in the natural world" },
+                                    { icon: "📢", text: "Psychoeducation Campaigns: free awareness initiatives for underserved communities" }
                                 ].map((item, idx) => (
                                     <div
                                         key={idx}

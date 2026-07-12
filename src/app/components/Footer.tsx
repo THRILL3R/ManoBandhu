@@ -31,7 +31,7 @@ export function Footer() {
 
           {/* Description */}
           <p className="text-sm text-[#c4d6cf] leading-relaxed max-w-[280px] mb-4">
-            ManoBandhu is a mental wellness initiative dedicated to making emotional well-being accessible, daily, and deeply human — through digital tools, real-world experiences, and the warmth of community.
+            ManoBandhu is a mental wellness initiative dedicated to making emotional well-being accessible, daily, and deeply human, through digital tools, real-world experiences, and the warmth of community.
           </p>
 
           {/* Sanskrit Tagline */}
@@ -39,7 +39,7 @@ export function Footer() {
             className="text-sm font-bold mb-6 max-w-[280px]"
             style={{ color: "#4ade80", fontFamily: "'Nunito', sans-serif" }}
           >
-            "Mano" (मनो) + "Bandhu" (बंधु) — Friend of the Mind
+            "Mano" (मनो) + "Bandhu" (बंधु): Friend of the Mind
           </p>
 
 

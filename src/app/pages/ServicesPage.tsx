@@ -43,7 +43,7 @@ export function ServicesPage() {
       icon: Leaf,
       name: "The Garden",
       category: "MORNING & NIGHT RITUAL",
-      description: "Your sacred daily clearing. Begin each morning with a gentle intention and close each night with a soft reflection. The Garden is where your emotional habits take root — one small ritual at a time.",
+      description: "Your sacred daily clearing. Begin each morning with a gentle intention and close each night with a soft reflection. The Garden is where your emotional habits take root, one small ritual at a time.",
       status: "MAJOR",
       tags: ["Morning ritual", "Night ritual", "Habit seeds", "Daily intentions"],
       image: "/the-garden.jpeg",
@@ -60,7 +60,7 @@ export function ServicesPage() {
       icon: Flashlight,
       name: "The Lighthouse",
       category: '"I AM NOT OKAY" MOMENTS',
-      description: "When the waves feel too high, the lighthouse is always lit for you. A calm, non-judgmental space for your hardest moments — with breathing tools, grounding techniques, and gentle presence.",
+      description: "When the waves feel too high, the lighthouse is always lit for you. A calm, non-judgmental space for your hardest moments, with breathing tools, grounding techniques, and gentle presence.",
       status: "MAJOR",
       tags: ["Emotional regulation", "Breathing tools", "Grounding", "Immediate support"],
       image: "/the-lighthouse.jpeg",
@@ -200,12 +200,12 @@ export function ServicesPage() {
                     {
                       icon: "🇮🇳",
                       title: "Made in India",
-                      description: "Built with pride in India — for the realities of Indian daily life. Grounded in lived experience, designed to work for everyone."
+                      description: "Built with pride in India, for the realities of Indian daily life. Grounded in lived experience, designed to work for everyone."
                     },
                     {
                       icon: "⏱️",
                       title: "Just 5–10 Minutes",
-                      description: "Built for busy lives. You have 5–10 minutes to look within yourself, know your feelings and intentions — so that whatever you do, you give your all."
+                      description: "Built for busy lives. You have 5–10 minutes to look within yourself, know your feelings and intentions, so that whatever you do, you give your all."
                     }
                   ].map((feature, index) => (
                     <motion.div
@@ -357,7 +357,7 @@ export function ServicesPage() {
                     </div>
                   </div>
                   <p className="text-[17px] text-gray-600 leading-relaxed mb-8">
-                    Our campaigns bring mental health awareness directly into communities — orphanages, old age homes, and spaces for specially abled children. This is a CSR initiative, completely free of cost for underserved communities. We demystify emotional wellbeing, provide practical tools, and create safe spaces for conversations about feelings, boundaries, and self-care.
+                    Our campaigns bring mental health awareness directly into communities: orphanages, old age homes, and spaces for specially abled children. This is a CSR initiative, completely free of cost for underserved communities. We demystify emotional wellbeing, provide practical tools, and create safe spaces for conversations about feelings, boundaries, and self-care.
                   </p>
                   <div className="bg-[#f0f9ff] p-6 rounded-2xl flex items-center justify-center">
                     <h4 className="font-semibold text-[#0ea5e9] text-[18px]">Free of cost for underserved communities</h4>
@@ -397,7 +397,7 @@ export function ServicesPage() {
                   </div>
 
                   <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                    Our workshops provide practical skills for managing anxiety, building boundaries, improving communication, and navigating life transitions. Led by experienced facilitators, these sessions combine education with experiential learning — for healing, grief, trauma recovery, and emotional growth. 
+                    Our workshops provide practical skills for managing anxiety, building boundaries, improving communication, and navigating life transitions. Led by experienced facilitators, these sessions combine education with experiential learning for healing, grief, trauma recovery, and emotional growth.
                   </p>
                   
                   <div className="mb-8 flex items-center">
@@ -424,7 +424,7 @@ export function ServicesPage() {
                     </div>
                     <div>
                       <h3 className="text-teal-700">Listening Circles</h3>
-                      <p className="text-muted-foreground">You are not alone. Share, grieve, accept, and heal — together</p>
+                      <p className="text-muted-foreground">You are not alone. Share, grieve, accept, and heal, together</p>
                     </div>
                   </div>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-6">

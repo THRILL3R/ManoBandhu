@@ -44,7 +44,7 @@ export function PhilosophySection() {
                             lineHeight: 1.8,
                         }}
                     >
-                        We obsess over steps counted, calories burned, and protein consumed — but when did we last check in with how our mind feels?
+                        We obsess over steps counted, calories burned, and protein consumed, but when did we last check in with how our mind feels?
                     </p>
                 </div>
 
@@ -77,7 +77,7 @@ export function PhilosophySection() {
                             Physical Health
                         </h3>
                         <p className="flex-grow" style={{ fontFamily: "'Nunito', sans-serif", color: "#5a8f7b", lineHeight: 1.75, fontSize: "1.05rem" }}>
-                            Daily workouts, balanced diets, step goals, sleep tracking. We have entire ecosystems built to help our bodies thrive — and we celebrate this.
+                            Daily workouts, balanced diets, step goals, sleep tracking. We have entire ecosystems built to help our bodies thrive, and we celebrate this.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-2">
                             {["Exercise", "Nutrition", "Sleep", "Hydration"].map((tag) => (
@@ -118,7 +118,7 @@ export function PhilosophySection() {
                             Mental Health
                         </h3>
                         <p className="flex-grow" style={{ fontFamily: "'Nunito', sans-serif", color: "rgba(255,255,255,0.85)", lineHeight: 1.75, fontSize: "1.05rem" }}>
-                            Reflection, emotional regulation, journaling, guided routines. ManoBandhu brings the same daily discipline to your emotional world — gently, joyfully.
+                            Reflection, emotional regulation, journaling, guided routines. ManoBandhu brings the same daily discipline to your emotional world, gently and joyfully.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-2">
                             {["Reflection", "Journaling", "Regulation", "Rituals"].map((tag) => (
@@ -168,7 +168,7 @@ export function PhilosophySection() {
                             margin: "0 auto",
                         }}
                     >
-                        "ManoBandhu" — from Sanskrit,{" "}
+                        "ManoBandhu", from Sanskrit,{" "}
                         <em style={{ color: "#1a7a50" }}>Mano</em> (mind) and{" "}
                         <em style={{ color: "#1a7a50" }}>Bandhu</em> (friend). Your mind's trusted companion, always by your side.
                     </p>

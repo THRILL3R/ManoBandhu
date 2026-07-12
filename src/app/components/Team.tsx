@@ -26,7 +26,7 @@ const team = [
     bg: "#EFF6FF",
     img: "https://images.unsplash.com/photo-1672075270227-ddf5cb181a79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMEluZGlhbiUyMHdvbWFuJTIwcHJvZmVzc2lvbmFsJTIwc21pbGluZ3xlbnwxfHx8fDE3NzMwNDQyMDN8MA&ixlib=rb-4.1.0&q=80&w=400",
     credentials: ["MBA Graduate", "Analytics Expert", "Mental Health Advocate"],
-    quote: "I took therapy and it changed my life. I want everyone to have that transformation — every single day.",
+    quote: "I took therapy and it changed my life. I want everyone to have that transformation, every single day.",
     bio: "Samruddhi's personal experience with mental health challenges, combined with her academic expertise in management and analytics, laid the foundation for ManoBandhu during her MBA tenure.",
   },
   {
@@ -72,7 +72,7 @@ export function Team() {
               ManoBandhu
             </h2>
             <p className="max-w-xl mx-auto" style={{ color: "#6B7280" }}>
-              A team of clinicians, educators, and dreamers united by one belief —
+              A team of clinicians, educators, and dreamers united by one belief:
               everyone deserves to thrive emotionally, every single day.
             </p>
           </div>

@@ -9,7 +9,7 @@ export function BlogsPage() {
   const blogs = [
     {
       id: 1,
-      title: "Why I Built ManoBandhu — And Why I Wish I Didn't Have To",
+      title: "Why I Built ManoBandhu, And Why I Wish I Didn't Have To",
       excerpt: "There is a specific kind of exhaustion that has nothing to do with sleep. It is the exhaustion of holding too much for too long...",
       author: "Samruddhi",
       authorRole: "Founder",
@@ -65,7 +65,7 @@ export function BlogsPage() {
     {
       id: 6,
       title: "Boundaries Are Not Walls. They Are the Language of Self-Respect.",
-      excerpt: "A limit is not a wall. It is a sentence. It tells the world — and yourself — where you end and someone else begins...",
+      excerpt: "A limit is not a wall. It is a sentence. It tells the world, and yourself, where you end and someone else begins...",
       author: "Kkomal Narsingani",
       authorRole: "Founding Member",
       date: "February 22, 2026",
