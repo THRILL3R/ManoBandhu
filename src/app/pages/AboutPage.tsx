@@ -24,6 +24,16 @@ export function AboutPage() {
       gradient: "from-emerald-400 to-emerald-600"
     },
     {
+      name: "Milan Dang",
+      role: "Financial Advisor",
+      image: "/team/milan.png",
+      bio: [
+        "Milan is the Founder of NavArth and brings over 20 years of experience across financial services and engineering organizations, including roles at JPMorgan, NatWest Group, and ICRA. An IIM Kozhikode MBA and IIT Guwahati engineer, he is also a Certified Financial Risk Manager (FRM), with deep expertise in financial modeling, valuation, and risk management.",
+        "At Manobandhu, Milan advises on financial planning, fundraising strategy, and building the institutional-grade rigor needed to scale a mission-driven venture responsibly. His experience guiding both individuals and early-stage founders through complex financial decisions grounds Manobandhu's approach to sustainable, well-planned growth."
+      ],
+      gradient: "from-blue-400 to-blue-600"
+    },
+    {
       name: "Kkomal Narsingani",
       role: "Mentor - Mental Health",
       image: "/team/kkomal.png",
