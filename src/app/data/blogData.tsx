@@ -507,5 +507,140 @@ export const blogs: Record<number, BlogContent> = {
         </div>
       </div>
     )
+  },
+  7: {
+    id: 7,
+    title: "You Don't Have to Be Struggling to Need ManoDweep",
+    author: "Samruddhi",
+    authorRoles: ["Founder", "ManoDweep"],
+    date: "July 12, 2026",
+    readTime: "5 min read",
+    categories: ["ManoDweep", "Mental Health", "Who It's For"],
+    image: "/founderNote.jpg",
+    content: (
+      <div className="space-y-8 text-gray-800 leading-relaxed text-lg">
+        <p>
+          Every time we talk about ManoDweep, someone asks the same question in a different shape. Is this for people going through something serious? Is this for people who are depressed, or anxious, or in crisis? Should I wait until things get bad enough to need this?
+        </p>
+        <p>
+          The honest answer is no. And that no is the entire point of what we are building.
+        </p>
+        <p>
+          ManoDweep was not designed for the worst day of your life. It was designed for the Tuesday that looks completely fine from the outside. The day you got through your tasks, replied to your messages, showed up for everyone who needed you, and still went to bed feeling like something inside you never got a turn to be looked at.
+        </p>
+        <p className="italic text-xl text-gray-700 font-serif border-l-4 border-emerald-500 pl-6 my-10">
+          That feeling does not need a diagnosis to be real. It just needs somewhere to go.
+        </p>
+        <h3 className="text-3xl font-serif text-emerald-900 mt-12 mb-6">Who We Actually Built This For</h3>
+        <p>
+          We built ManoDweep for the student who is doing fine academically but has no language for why they feel flat most mornings. For the twenty three year old two years into their first job, who is good at their work and quietly unsure of everything else. For the person who has never been to therapy, does not think they need it, and would never think to look for one either, but who still carries more than they let on.
+        </p>
+        <p>
+          We built it for people who are not in crisis. Because crisis is not where mental health begins to matter. It is where mental health has already been ignored for too long.
+        </p>
+        <p>
+          If you have ever felt "off" without being able to explain why, if you have ever answered "I'm fine" when you were not entirely sure that was true, if you have ever wished someone would ask you a real question instead of a polite one, ManoDweep is for you. Not eventually. Now.
+        </p>
+        <h3 className="text-3xl font-serif text-emerald-900 mt-12 mb-6">What It Actually Gives You</h3>
+        <p>
+          We are not interested in making you meditate for the sake of a streak. We are not interested in reducing your inner life to a mood tracker with three emoji options. What we want to give you is something much simpler and much harder to find: a daily habit of paying attention to yourself, in language you actually understand, at a pace that fits an ordinary life.
+        </p>
+        <p>
+          Some days that looks like noticing one good moment before it slips past you. Some days it looks like naming a feeling with more precision than "fine" or "bad." Some days it is just five minutes of being present instead of being everywhere else in your head. None of it demands that something be wrong first.
+        </p>
+        <p>
+          Over time, these small daily moments build something that a single crisis intervention cannot. They build self awareness that does not disappear the moment the appointment ends. They build a relationship with your own inner life that holds up on ordinary days, not just extraordinary ones.
+        </p>
+        <p>
+          One of the spaces inside ManoDweep is Island Universe, a small mind care game built to help you slow down and notice your own patterns, not to keep you scrolling. And that is on purpose. The entire platform is built so you cannot spend more than thirty to forty minutes a day inside it, even if you wanted to. We are not chasing your screen time. We are chasing the honest few minutes you actually needed today.
+        </p>
+        <h3 className="text-3xl font-serif text-emerald-900 mt-12 mb-6">Why This Matters More Than It Seems To</h3>
+        <p>
+          We have all met people who look completely put together and are quietly running on empty. Chances are, you have been that person. The tragedy is not that they are struggling. The tragedy is that nothing in their day ever asked them to check.
+        </p>
+        <p>
+          ManoDweep exists to be that ask. Gently, daily, without waiting for permission or proof that things are bad enough to deserve attention.
+        </p>
+        <p className="font-serif text-2xl text-emerald-800 text-center py-8">
+          "You do not need a reason to check in with yourself. You are the reason."
+        </p>
+        <p>
+          If you are reading this and thinking you are probably fine, you probably are. And you can still use something built for you. That is not a contradiction. That is exactly what daily emotional care is supposed to look like.
+        </p>
+        <p>
+          We are building ManoDweep for the people who are managing, not just the people who are drowning. If that is you, on any ordinary day, we would love to have you with us.
+        </p>
+        <div className="mt-16 pt-10 border-t border-gray-200">
+          <p className="italic text-gray-600">Written with honesty and a lot of chai.</p>
+          <p className="font-serif text-xl text-emerald-900">Samruddhi, Founder, ManoDweep</p>
+        </div>
+      </div>
+    )
+  },
+  8: {
+    id: 8,
+    title: "The People Who See It Before It Exists",
+    author: "Samruddhi",
+    authorRoles: ["Founder", "ManoDweep"],
+    date: "July 10, 2026",
+    readTime: "5 min read",
+    categories: ["Founder's Note", "Team", "ManoDweep"],
+    image: "/founderNote.jpg",
+    content: (
+      <div className="space-y-8 text-gray-800 leading-relaxed text-lg">
+        <p>
+          There is a particular kind of nervousness that never really goes away, no matter how many times you do it. Standing in front of a room, a slide behind you, a timer running somewhere you cannot see, trying to explain in eight minutes why something that lives mostly in your head deserves to exist in the world.
+        </p>
+        <p>
+          I have done this more times than I can count now. Founder meetups. Pitch competitions. Rooms full of investors who have heard a hundred ideas that month and rooms full of strangers who came in out of curiosity and left asking real questions. Every one of those rooms has taught me something. But the lesson that has stayed with me the most has nothing to do with pitching technique.
+        </p>
+        <p>
+          It is this. Most people will listen politely and move on. And then, every so often, someone in the room stops looking at their phone, leans forward slightly, and asks a question that tells you they are not evaluating your idea anymore. They are already inside it.
+        </p>
+        <p className="italic text-xl text-gray-700 font-serif border-l-4 border-emerald-500 pl-6 my-10">
+          Those are the people who change everything.
+        </p>
+        <h3 className="text-3xl font-serif text-emerald-900 mt-12 mb-6">What It Feels Like When Someone Gets It</h3>
+        <p>
+          You can tell within the first minute of a conversation whether someone understands what you are building or whether they are just being kind. The polite version sounds like "that's a great idea" and ends there. The real version sounds like a question you were not expecting, or a story about their own life that suddenly makes sense of why they are asking it.
+        </p>
+        <p>
+          I have had people come up after a pitch and quietly tell me about a friend they lost touch with, or a year of their own life they do not talk about often, and say something like "I wish this had existed then." That is not feedback. That is trust. And it is humbling every single time.
+        </p>
+        <p>
+          It is in those moments that I stop feeling like I am selling something and start feeling like I am being handed something. A responsibility to build this well, because someone just told me why it matters to them personally, not hypothetically.
+        </p>
+        <h3 className="text-3xl font-serif text-emerald-900 mt-12 mb-6">Building the Team, One Real Conversation at a Time</h3>
+        <p>
+          Somewhere along the way, those conversations stopped being just about getting funded or getting noticed. They started turning into something else entirely. People began asking how they could help. Not customers. Not investors. People who wanted to be part of building this, as advisors, as mentors, as interns willing to learn alongside us.
+        </p>
+        <p>
+          That still feels like a small miracle to me. We now have people from Delhi, from Maharashtra, from Hyderabad, from Assam, all choosing to spend their time and energy on something we are still building, still figuring out, still getting wrong in places. Different backgrounds, different mother tongues, different life experiences, all pointed at the same quiet belief that daily emotional care should not be a privilege.
+        </p>
+        <p>
+          Getting to build a team this way, one honest conversation at a time instead of one job posting at a time, is a kind of privilege I do not take lightly.
+        </p>
+        <h3 className="text-3xl font-serif text-emerald-900 mt-12 mb-6">What I Am Trying to Build, Beyond the Product</h3>
+        <p>
+          Every new person who joins is also a chance to get something right that I did not always have myself. A workplace where you are not expected to leave your inner life at the door to be taken seriously. Where good practices are not an afterthought but a starting point. Where someone from Guwahati and someone from Pune and someone from Hyderabad can all feel like their voice carries the same weight in a conversation.
+        </p>
+        <p>
+          I want every person who joins this team, whether for three months or three years, to feel like their presence made a real difference. Not because we told them so, but because we built the kind of place where that is simply true.
+        </p>
+        <p className="font-serif text-2xl text-emerald-800 text-center py-8">
+          "You do not build culture after you build the product. You build it in the very first conversation, with the very first person who says yes."
+        </p>
+        <p>
+          That is the part of this work that nobody prepares you for in a pitch deck. Not the fundraising, not the metrics, not even the product itself, but the quiet responsibility of shaping how a group of people treat each other while they are building something they all believe in.
+        </p>
+        <p>
+          To everyone who has stopped scrolling, leaned forward, and asked a real question in one of those rooms, thank you. Some of you are now part of this team. Some of you may be someday. Either way, you are the reason this still feels like it is worth building, one honest conversation at a time.
+        </p>
+        <div className="mt-16 pt-10 border-t border-gray-200">
+          <p className="italic text-gray-600">Written with honesty and a lot of chai.</p>
+          <p className="font-serif text-xl text-emerald-900">Samruddhi, Founder, ManoDweep</p>
+        </div>
+      </div>
+    )
   }
 };

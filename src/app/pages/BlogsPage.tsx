@@ -8,6 +8,28 @@ export function BlogsPage() {
   // Mock blog data - in production, this would come from your backend
   const blogs = [
     {
+      id: 7,
+      title: "You Don't Have to Be Struggling to Need ManoDweep",
+      excerpt: "ManoDweep was not designed for the worst day of your life. It was designed for the Tuesday that looks completely fine from the outside...",
+      author: "Samruddhi",
+      authorRole: "Founder",
+      date: "July 12, 2026",
+      category: "Founder's Note",
+      readTime: "5 min read",
+      image: "/founderNote.jpg"
+    },
+    {
+      id: 8,
+      title: "The People Who See It Before It Exists",
+      excerpt: "Every so often, someone in the room stops looking at their phone, leans forward slightly, and asks a question that tells you they are already inside it...",
+      author: "Samruddhi",
+      authorRole: "Founder",
+      date: "July 10, 2026",
+      category: "Founder's Note",
+      readTime: "5 min read",
+      image: "/founderNote.jpg"
+    },
+    {
       id: 1,
       title: "Why I Built ManoBandhu, And Why I Wish I Didn't Have To",
       excerpt: "There is a specific kind of exhaustion that has nothing to do with sleep. It is the exhaustion of holding too much for too long...",
