@@ -21,7 +21,7 @@ export const blogs: Record<number, BlogContent> = {
     date: "March 5, 2026",
     readTime: "5 min read",
     categories: ["Founder's Note", "Mental Health", "ManoBandhu"],
-    image: "/founderNote.jpg",
+    image: "/blog/blog-1.jpg",
     content: (
       <div className="space-y-8 text-gray-800 leading-relaxed text-lg">
         <p className="italic text-xl text-gray-700 font-serif border-l-4 border-emerald-500 pl-6 my-10">
@@ -92,7 +92,7 @@ export const blogs: Record<number, BlogContent> = {
     date: "March 3, 2026",
     readTime: "5 min read",
     categories: ["Mental Health", "Prevention", "Current Reality"],
-    image: "/mentalHealth.jpg",
+    image: "/blog/blog-2.jpg",
     content: (
       <div className="space-y-8 text-gray-800 leading-relaxed text-lg">
         <p className="text-xl font-medium">Picture this.</p>
@@ -184,7 +184,7 @@ export const blogs: Record<number, BlogContent> = {
     date: "March 1, 2026",
     readTime: "6 min read",
     categories: ["Relationships", "Mental Health", "Emotional Wellness"],
-    image: "/relationship.jpg",
+    image: "/blog/blog-3.jpg",
     content: (
       <div className="space-y-8 text-gray-800 leading-relaxed text-lg">
         <p className="italic text-xl text-gray-700 font-serif border-l-4 border-emerald-500 pl-6 my-10">
@@ -266,7 +266,7 @@ export const blogs: Record<number, BlogContent> = {
     date: "February 28, 2026",
     readTime: "5 min read",
     categories: ["Mind-Body", "Mental Health", "Psychosomatic Awareness"],
-    image: "/mind-and-body.jpg",
+    image: "/blog/blog-4.jpg",
     content: (
       <div className="space-y-8 text-gray-800 leading-relaxed text-lg">
         <p>
@@ -338,7 +338,7 @@ export const blogs: Record<number, BlogContent> = {
     date: "February 25, 2026",
     readTime: "6 min read",
     categories: ["Identity", "Self-Understanding"],
-    image: "/mentalHealth.jpg",
+    image: "/blog/blog-5.jpg",
     content: (
       <div className="space-y-8 text-gray-800 leading-relaxed text-lg">
         <p className="italic text-xl text-gray-700 font-serif border-l-4 border-emerald-500 pl-6 my-10">
@@ -428,7 +428,7 @@ export const blogs: Record<number, BlogContent> = {
     date: "February 22, 2026",
     readTime: "6 min read",
     categories: ["Boundaries", "Relationships", "Emotional Health"],
-    image: "/relationship.jpg",
+    image: "/blog/blog-6.jpg",
     content: (
       <div className="space-y-8 text-gray-800 leading-relaxed text-lg">
         <p>
@@ -516,7 +516,7 @@ export const blogs: Record<number, BlogContent> = {
     date: "July 12, 2026",
     readTime: "5 min read",
     categories: ["ManoDweep", "Mental Health", "Who It's For"],
-    image: "/founderNote.jpg",
+    image: "/blog/blog-7.jpg",
     content: (
       <div className="space-y-8 text-gray-800 leading-relaxed text-lg">
         <p>
@@ -585,7 +585,7 @@ export const blogs: Record<number, BlogContent> = {
     date: "July 10, 2026",
     readTime: "5 min read",
     categories: ["Founder's Note", "Team", "ManoDweep"],
-    image: "/founderNote.jpg",
+    image: "/blog/blog-8.jpg",
     content: (
       <div className="space-y-8 text-gray-800 leading-relaxed text-lg">
         <p>
