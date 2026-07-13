@@ -18,7 +18,7 @@ export function Footer() {
           {/* Logo + Name */}
           <div className="flex items-center gap-3 mb-5">
             <div className="w-14 h-14 flex items-center justify-center">
-              <img src="/mb-white-logo.png" alt="ManoBandhu Logo" className="w-full h-full object-contain" />
+              <img src="/mb-white-logo.webp" alt="ManoBandhu Logo" className="w-full h-full object-contain" />
             </div>
             <span
               className="text-2xl font-bold"

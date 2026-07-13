@@ -46,7 +46,7 @@ export function ServicesPage() {
       description: "Your sacred daily clearing. Begin each morning with a gentle intention and close each night with a soft reflection. The Garden is where your emotional habits take root, one small ritual at a time.",
       status: "MAJOR",
       tags: ["Morning ritual", "Night ritual", "Habit seeds", "Daily intentions"],
-      image: "/the-garden.jpeg",
+      image: "/the-garden.webp",
       themeClasses: {
          bg: "bg-[#e8fbf0]",
          category: "text-[#34d399]",
@@ -63,7 +63,7 @@ export function ServicesPage() {
       description: "When the waves feel too high, the lighthouse is always lit for you. A calm, non-judgmental space for your hardest moments, with breathing tools, grounding techniques, and gentle presence.",
       status: "MAJOR",
       tags: ["Emotional regulation", "Breathing tools", "Grounding", "Immediate support"],
-      image: "/the-lighthouse.jpeg",
+      image: "/the-lighthouse.webp",
       themeClasses: {
          bg: "bg-[#fff8e7]",
          category: "text-orange-400",
@@ -80,7 +80,7 @@ export function ServicesPage() {
       description: "Discover and join wellbeing events, workshops, and community gatherings. Connect with others on similar journeys.",
       status: "AVAILABLE",
       tags: ["Workshops", "Community", "Gatherings", "Events"],
-      image: "/The Fair.jpeg",
+      image: "/The Fair.webp",
       themeClasses: {
          bg: "bg-pink-50",
          category: "text-pink-500",
@@ -97,7 +97,7 @@ export function ServicesPage() {
       description: "Receive weekly reflective insights personalized to your journey. Gentle feedback that encourages growth, not grades that induce fear.",
       status: "AVAILABLE",
       tags: ["Insights", "Feedback", "Growth", "Journey"],
-      image: "/the-cave.jpeg",
+      image: "/the-cave.webp",
       themeClasses: {
          bg: "bg-blue-50",
          category: "text-blue-500",
@@ -114,7 +114,7 @@ export function ServicesPage() {
       description: "Designed to complement and enhance your therapy sessions. Track insights, prepare for sessions, and integrate learnings into daily life.",
       status: "AVAILABLE",
       tags: ["Therapy", "Integration", "Tracking", "Preparation"],
-      image: "/Therapy Support House.jpeg",
+      image: "/Therapy Support House.webp",
       themeClasses: {
          bg: "bg-teal-50",
          category: "text-teal-500",

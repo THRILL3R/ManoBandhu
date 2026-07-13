@@ -44,7 +44,7 @@ export function NewNavbar() {
           {/* Logo image — left */}
           <Link to="/" className="flex items-center gap-2" style={{ textDecoration: "none", flexShrink: 0 }}>
             <img
-              src="/mb-white-logo.png"
+              src="/mb-white-logo.webp"
               alt="ManoBandhu"
               style={{ height: 44, width: "auto", display: "block", objectFit: "contain" }}
             />
@@ -132,7 +132,7 @@ export function NewNavbar() {
         >
           <Link to="/" className="flex items-center gap-2" style={{ textDecoration: "none" }}>
             <img
-              src="/mb-white-logo.png"
+              src="/mb-white-logo.webp"
               alt="ManoBandhu"
               style={{ height: 36, width: "auto", display: "block", objectFit: "contain" }}
             />

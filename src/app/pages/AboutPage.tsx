@@ -6,7 +6,7 @@ export function AboutPage() {
     {
       name: "Samruddhi Vadgave",
       role: "Co-Founder & CEO",
-      image: "/team/samruddhi.png",
+      image: "/team/samruddhi.webp",
       bio: [
         "With a background in management and analytics, Samruddhi's journey with ManoBandhu began during her MBA when she faced personal challenges and sought therapy. Those experiences, navigating emotional pain, discovering the gaps in existing mental health solutions, and understanding the power of daily emotional habits, sparked the idea for ManoBandhu.",
         "ManoBandhu was incorporated during her MBA tenure, born from a deep belief that emotional well-being should be accessible, structured, and built into daily life, not reserved for moments of crisis."
@@ -16,7 +16,7 @@ export function AboutPage() {
     {
       name: "Dr. Pravin Vadgave",
       role: "Co-Founder",
-      image: "/team/pravin.png",
+      image: "/team/pravin.webp",
       bio: [
         "An MD Homeopath with over 40 years of clinical practice, Dr. Pravin brings a deep understanding of holistic healing, patient care, and the mind-body connection to ManoBandhu.",
         "His decades of experience working with patients across diverse backgrounds have shaped ManoBandhu's compassionate, patient-centered approach. Together with Samruddhi, he envisions a world where emotional care is as natural and accessible as physical care."
@@ -26,7 +26,7 @@ export function AboutPage() {
     {
       name: "Milan Dang",
       role: "Financial Advisor",
-      image: "/team/milan.png",
+      image: "/team/milan.webp",
       bio: [
         "Milan is the Founder of NavArth and brings over 20 years of experience across financial services and engineering organizations, including roles at JPMorgan, NatWest Group, and ICRA. An IIM Kozhikode MBA and IIT Guwahati engineer, he is also a Certified Financial Risk Manager (FRM), with deep expertise in financial modeling, valuation, and risk management.",
         "At Manobandhu, Milan advises on financial planning, fundraising strategy, and building the institutional-grade rigor needed to scale a mission-driven venture responsibly. His experience guiding both individuals and early-stage founders through complex financial decisions grounds Manobandhu's approach to sustainable, well-planned growth."
@@ -36,7 +36,7 @@ export function AboutPage() {
     {
       name: "Kkomal Narsingani",
       role: "Mentor - Mental Health",
-      image: "/team/kkomal.png",
+      image: "/team/kkomal.webp",
       bio: [
         "Kkomal Narsingani is a dedicated Therapist, Facilitator, and Wellness Coach with over 20 years of experience, transitioning from HRM to Mental Health in 2017. With a PGD in Counselling Psychology from TISS, she is also a Reiki Master and Clinical Musician, with a deep understanding of Buddhist Psychology.",
         "Kkomal’s approach is holistic, emphasizing that there is no one-size-fits-all solution to achieving happiness, health, productivity, or creativity. She is committed to relentlessly exploring human nature to help others live better lives."

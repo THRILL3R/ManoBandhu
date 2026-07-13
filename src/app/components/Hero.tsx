@@ -66,7 +66,7 @@ export function Hero() {
       </div>
 
       <img
-        src="/cloud.png"
+        src="/cloud.webp"
         alt=""
         aria-hidden="true"
         className={styles.cloudOverlay}

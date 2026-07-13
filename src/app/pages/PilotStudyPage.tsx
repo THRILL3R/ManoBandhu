@@ -429,7 +429,7 @@ function Section4({ data, update }: { data: FormData; update: (patch: Partial<Fo
         <div className="flex flex-col items-center gap-4">
           <div className="bg-white rounded-2xl p-4 shadow-md border border-teal-100 flex items-center justify-center max-w-[240px]">
             <img
-              src="/images/qr.jpeg"
+              src="/images/qr.webp"
               alt="ManoBandhu IDFC FIRST Bank UPI QR Code"
               className="w-full h-auto object-contain rounded-lg"
             />

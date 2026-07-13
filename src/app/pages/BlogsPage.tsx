@@ -16,7 +16,7 @@ export function BlogsPage() {
       date: "July 12, 2026",
       category: "Founder's Note",
       readTime: "5 min read",
-      image: "/blog/blog-7.jpg"
+      image: "/blog/blog-7.webp"
     },
     {
       id: 8,
@@ -27,7 +27,7 @@ export function BlogsPage() {
       date: "July 10, 2026",
       category: "Founder's Note",
       readTime: "5 min read",
-      image: "/blog/blog-8.jpg"
+      image: "/blog/blog-8.webp"
     },
     {
       id: 1,
@@ -38,7 +38,7 @@ export function BlogsPage() {
       date: "March 5, 2026",
       category: "Founder's Note",
       readTime: "5 min read",
-      image: "/blog/blog-1.jpg"
+      image: "/blog/blog-1.webp"
     },
     {
       id: 2,
@@ -49,7 +49,7 @@ export function BlogsPage() {
       date: "March 3, 2026",
       category: "Mental Health",
       readTime: "5 min read",
-      image: "/blog/blog-2.jpg"
+      image: "/blog/blog-2.webp"
     },
     {
       id: 3,
@@ -60,7 +60,7 @@ export function BlogsPage() {
       date: "March 1, 2026",
       category: "Relationships",
       readTime: "6 min read",
-      image: "/blog/blog-3.jpg"
+      image: "/blog/blog-3.webp"
     },
     {
       id: 4,
@@ -71,7 +71,7 @@ export function BlogsPage() {
       date: "February 28, 2026",
       category: "Mind & Body",
       readTime: "5 min read",
-      image: "/blog/blog-4.jpg"
+      image: "/blog/blog-4.webp"
     },
     {
       id: 5,
@@ -82,7 +82,7 @@ export function BlogsPage() {
       date: "February 25, 2026",
       category: "Identity",
       readTime: "6 min read",
-      image: "/blog/blog-5.jpg"
+      image: "/blog/blog-5.webp"
     },
     {
       id: 6,
@@ -93,7 +93,7 @@ export function BlogsPage() {
       date: "February 22, 2026",
       category: "Relationships",
       readTime: "6 min read",
-      image: "/blog/blog-6.jpg"
+      image: "/blog/blog-6.webp"
     }
   ];
 
