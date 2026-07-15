@@ -455,7 +455,6 @@ function Section4({ data, update }: { data: FormData; update: (patch: Partial<Fo
           <input
             type="file"
             accept="image/*"
-            required
             onChange={(e) => update({ paymentScreenshot: e.target.files?.[0] ?? null })}
             className="w-full text-sm text-muted-foreground file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-teal-100 file:text-teal-700 hover:file:bg-teal-200 cursor-pointer"
           />
@@ -498,6 +497,7 @@ export function PilotStudyPage() {
   const [step, setStep] = useState(0);
   const [data, setData] = useState<FormData>(initialData);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const update = (patch: Partial<FormData>) => setData((prev) => ({ ...prev, ...patch }));
 
@@ -510,14 +510,59 @@ export function PilotStudyPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!data.ageConsent) {
       toast.error("Please confirm your age and consent before submitting.");
       return;
     }
-    setSubmitted(true);
-    toast.success("Registration submitted! We'll be in touch soon.");
+    const screenshot = data.paymentScreenshot;
+    if (!screenshot) {
+      toast.error("Please upload your payment screenshot before submitting.");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const fd = new FormData();
+      fd.append("email", data.email);
+      fd.append("name", data.name);
+      fd.append("dob", data.dob);
+      fd.append("ageGroup", data.ageGroup);
+      fd.append("place", data.place);
+      fd.append("country", data.country);
+      fd.append("category", data.category);
+      fd.append("partnerInstitution", data.partnerInstitution);
+      fd.append("mobile", data.mobile);
+      fd.append("hasInternet", data.hasInternet);
+      fd.append("commitmentLikelihood", data.commitmentLikelihood);
+      fd.append("receivingTreatment", data.receivingTreatment);
+      fd.append("treatmentOngoing", data.treatmentOngoing);
+      fd.append("recentExperiences", JSON.stringify(data.recentExperiences));
+      fd.append("diagnoses", JSON.stringify(data.diagnoses));
+      fd.append("stressFrequency", data.stressFrequency);
+      fd.append("currentExperiences", JSON.stringify(data.currentExperiences));
+      fd.append("currentlyInTherapy", data.currentlyInTherapy);
+      fd.append("studyAppropriate", data.studyAppropriate);
+      fd.append("dataConsent", data.dataConsent);
+      fd.append("ageConsent", String(data.ageConsent));
+      fd.append("paymentScreenshot", screenshot);
+
+      const res = await fetch("/api/study/register", { method: "POST", body: fd });
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        toast.error(json.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+      toast.success("Registration submitted! We'll be in touch soon.");
+    } catch {
+      toast.error("Network error — please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -674,10 +719,15 @@ export function PilotStudyPage() {
 
               <button
                 type="submit"
-                className="flex-1 flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-semibold shadow-lg transition-all hover:scale-[1.01] text-sm"
+                disabled={step === SECTIONS.length - 1 && submitting}
+                className="flex-1 flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-semibold shadow-lg transition-all hover:scale-[1.01] text-sm disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 {step === SECTIONS.length - 1 ? (
-                  <><Check className="w-5 h-5" /> Submit Registration</>
+                  submitting ? (
+                    <>Submitting…</>
+                  ) : (
+                    <><Check className="w-5 h-5" /> Submit Registration</>
+                  )
                 ) : (
                   <>Continue <ChevronRight className="w-5 h-5" /></>
                 )}
