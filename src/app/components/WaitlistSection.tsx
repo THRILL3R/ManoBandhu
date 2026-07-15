@@ -108,40 +108,35 @@ export function WaitlistSection() {
     setErrorMsg("");
 
     try {
-      const payload = { ...form, mobile: `+91${form.mobile.replace(/\s/g, "")}`, sheet: "Waitlist" };
+      // Saves to the pilot_waitlist table and sends the confirmation email
+      // server-side in one call. (Previously this posted to a dead Google
+      // Sheets webhook and to /waitlist/notify, which only sends an email
+      // and never persists anything \u2014 /join is the real endpoint for that.)
+      const payload = {
+        full_name: form.full_name,
+        email: form.email,
+        mobile: `+91${form.mobile.replace(/\s/g, "")}`,
+        occupation: form.occupation,
+        city: form.city,
+      };
 
-      // 1. Submit to Google Sheets (Data storage)
-      const SHEETS_URL = import.meta.env.VITE_SHEETS_URL;
-      if (SHEETS_URL) {
-        await fetch(SHEETS_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
+      const API_URL = import.meta.env.VITE_API_URL ?? "";
+      const res = await fetch(`${API_URL}/api/v1/waitlist/join`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok || json?.success === false) {
+        throw new Error(json?.error?.message ?? "Failed to join waitlist.");
       }
-
-      // 2. Send Automated Email via Backend
-      const API_URL = import.meta.env.VITE_API_URL;
-      if (API_URL) {
-        try {
-          await fetch(`${API_URL}/api/v1/waitlist/notify`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: form.email, name: form.full_name }),
-          });
-          console.log("Confirmation email sent successfully via Backend");
-        } catch (mailErr) {
-          console.error("Email sending failed:", mailErr);
-        }
-      }
-
 
       setStatus("success");
     } catch (err) {
       console.error("Submission error:", err);
       setStatus("error");
-      setErrorMsg("Failed to join waitlist. Please check your connection and try again.");
+      setErrorMsg(err instanceof Error ? err.message : "Failed to join waitlist. Please check your connection and try again.");
     }
   };
 

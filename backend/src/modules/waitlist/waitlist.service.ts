@@ -22,11 +22,16 @@ export async function joinWaitlist(
   const normalizedOccupation = occupation?.trim() || null;
   const normalizedCity = city?.trim() || null;
 
-  // Insert
+  // Insert. ON CONFLICT targets LOWER(email) to match the actual unique
+  // index (idx_pilot_waitlist_email_lower, migration 020) \u2014 the original
+  // plain UNIQUE(email) constraint was dropped by that migration in favor of
+  // a case-insensitive index, but this query was never updated to match,
+  // so every insert failed with "no unique or exclusion constraint matching
+  // the ON CONFLICT specification" and no waitlist signup was ever saved.
   const { rows } = await pool.query<{ id: string }>(
     `INSERT INTO pilot_waitlist (full_name, email, mobile, occupation, city)
      VALUES ($1, $2, $3, $4, $5)
-     ON CONFLICT (email) DO NOTHING
+     ON CONFLICT (LOWER(email)) DO NOTHING
      RETURNING id`,
     [full_name, email, mobile, normalizedOccupation, normalizedCity]
   );

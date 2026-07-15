@@ -30,18 +30,20 @@ export function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      // 1. Submit to Google Sheets
-      const SHEETS_URL = import.meta.env.VITE_SHEETS_URL;
-      if (SHEETS_URL) {
-        await fetch(SHEETS_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...formData, sheet: "Contact" }),
-        });
+      // Saves to contact_messages via the ManoDweep Next.js app (same origin,
+      // nginx proxies /api/ there). Previously this posted only to a dead
+      // Google Sheets Apps Script webhook and never actually saved anywhere.
+      const res = await fetch("/api/contact/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(json.error ?? "Something went wrong. Please try again.");
       }
 
-      
       toast.success("Thank you for contacting us! Our team will get in touch with you shortly.");
       setFormData({
         name: "",
@@ -51,8 +53,8 @@ export function ContactPage() {
         description: "",
       });
     } catch (err) {
-      console.error("Sheets submission error:", err);
-      toast.error("Failed to send message. Please try again later.");
+      console.error("Contact submission error:", err);
+      toast.error(err instanceof Error ? err.message : "Failed to send message. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
